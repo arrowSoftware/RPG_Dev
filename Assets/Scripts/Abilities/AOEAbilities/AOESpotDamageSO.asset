@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27a4aa070055622488c064d97c5a7c8c, type: 3}
+  m_Name: AOESpotDamageSO
+  m_EditorClassIdentifier: 
+  name: AOE Spot Damage
+  cooldownTime: 30
+  activeTime: 0
+  maxRange: 4
+  icon: {fileID: 21300000, guid: 71dfac4b9c4a274449fc43927e5a1772, type: 3}
+  AOESpotHealPrefab: {fileID: 5822620830461707883, guid: c8d7a5f354eb92843bd21815424f6555, type: 3}
+  aoeSpotType: 1
+  valuePerTick: 33
+  tickInterval: 1
+  duration: 10
