@@ -192,7 +192,12 @@ public class AbilityManager : MonoBehaviour
         castbar.StartCastbar(abilityCooldown.ability.castTime);
         isAbilityActive = true;
 
-        yield return new WaitForSeconds(abilityCooldown.ability.castTime);
+        if (abilityCooldown.ability.castTime == 0) {
+            yield return null;
+        } else {
+            yield return new WaitForSeconds(abilityCooldown.ability.castTime);            
+        }
+
         bool activated = abilityCooldown.ability.Activate(transform, target);
 
         // If the ability was activated then start the ability cooldown timer

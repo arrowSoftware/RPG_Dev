@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
+    public SoftwareCursor swCursor;
+
     // Camera state
     public enum CameraState {CameraNone, CameraRotate, CameraSteer, CameraRun}
     CameraState cameraState = CameraState.CameraNone;
@@ -58,6 +60,9 @@ public class CameraController : MonoBehaviour
     public Transform tilt;
     Camera mainCam;
 
+    Vector3 mousePositionAtClick;
+    bool mouseMove = false;
+
     // Camera Player Options
     [Header("Camera Options")]
     [Range(0.025f, 1.75f)]
@@ -67,7 +72,7 @@ public class CameraController : MonoBehaviour
     public float cameraSpeed = 2.0f;
 
     bool HasMouseMoved() {
-        return (Input.GetAxis("Mouse X") != 0) || (Input.GetAxis("Mouse Y") != 0);
+        return (swCursor.GetAxis("Mouse X") != 0) || (swCursor.GetAxis("Mouse Y") != 0);
     }
 
     private void Awake() {
@@ -95,32 +100,50 @@ public class CameraController : MonoBehaviour
         CameraClipInfo();
     }
 
+    Vector2 GetMousePosition() {
+        return swCursor.GetCursorPosition();
+    }
+
+    void SetMousePosition(int x, int y) {
+        swCursor.SetCursorPosition(new Vector3(x, y, 0));
+    }
+
     void Update()
     {
         // No mouse button
-        if (!Input.GetKey(leftMouse) && !Input.GetKey(rightMouse) && !Input.GetKey(middleMouse)) {
+        if (!swCursor.GetKey(leftMouse) && !swCursor.GetKey(rightMouse) && !swCursor.GetKey(middleMouse)) {
             cameraState = CameraState.CameraNone;
-            Cursor.lockState = CursorLockMode.None;
+            swCursor.SetHidden(false);
+            if (mouseMove) {
+                SetMousePosition((int)mousePositionAtClick.x, (int)mousePositionAtClick.y);
+                mouseMove = false;
+            }
         }
         // Left button
-        else if (Input.GetKey(leftMouse) && !Input.GetKey(rightMouse) && !Input.GetKey(middleMouse)) {
+        else if (swCursor.GetKey(leftMouse) && !swCursor.GetKey(rightMouse) && !swCursor.GetKey(middleMouse)) {
             cameraState = CameraState.CameraRotate;
             if (HasMouseMoved()) {
-                Cursor.lockState = CursorLockMode.Confined;
+                swCursor.SetHidden(true);
+                mousePositionAtClick = GetMousePosition();
+                mouseMove = true;
             }
         }
         // Right mouse button
-        else if (!Input.GetKey(leftMouse) && Input.GetKey(rightMouse) && !Input.GetKey(middleMouse)) {
+        else if (!swCursor.GetKey(leftMouse) && swCursor.GetKey(rightMouse) && !swCursor.GetKey(middleMouse)) {
             cameraState = CameraState.CameraSteer;
             if (HasMouseMoved()) {
-                Cursor.lockState = CursorLockMode.Confined;
+                swCursor.SetHidden(true);
+                mousePositionAtClick = GetMousePosition();
+                mouseMove = true;
             }
         }
         // Left and right mouse button or middile mouse button
-        else if ((Input.GetKey(leftMouse) && Input.GetKey(rightMouse)) || Input.GetKey(middleMouse)) {
+        else if ((swCursor.GetKey(leftMouse) && swCursor.GetKey(rightMouse)) || swCursor.GetKey(middleMouse)) {
             cameraState = CameraState.CameraRun;
             if (HasMouseMoved()) {
-                Cursor.lockState = CursorLockMode.Confined;
+                swCursor.SetHidden(true);
+                mousePositionAtClick = GetMousePosition();
+                mouseMove = true;
             }
         }
 
@@ -310,7 +333,7 @@ public class CameraController : MonoBehaviour
                 }
 
                 // Set pan to mouse x input.
-                currentPan += Input.GetAxis("Mouse X") * cameraSpeed;
+                currentPan += swCursor.GetAxis("Mouse X") * cameraSpeed;
             }
             else if (cameraState == CameraState.CameraSteer || cameraState == CameraState.CameraRun)
             {
@@ -322,7 +345,7 @@ public class CameraController : MonoBehaviour
                     player.steer = true;
                 }
             }
-            currentTilt -= Input.GetAxis("Mouse Y") * cameraSpeed;
+            currentTilt -= swCursor.GetAxis("Mouse Y") * cameraSpeed;
             currentTilt = Mathf.Clamp(currentTilt, -cameraMaxTilt, cameraMaxTilt);
         }
         else 

@@ -49,7 +49,7 @@ public class ActionBar : MonoBehaviour
             float duration = abilityManager.GetAbilityCooldownTimer(ability);
             string durationText = ((int)duration).ToString();
             if (duration == 0.0) {
-                durationText = "";
+                return;
             } else if (duration < 1.0f) {
                 durationText = duration.ToString("f1");
             }
@@ -71,12 +71,10 @@ public class ActionBar : MonoBehaviour
                 GCDImage.enabled = false;
             }
 
-            if (cooldownText.text != "") {
-                cooldownText.SetText("");
-                Color tempColor = slotIcon.color;
-                tempColor.a = 1.0f;
-                slotIcon.color = tempColor;
-            }
+            cooldownText.SetText("");
+            Color tempColor = slotIcon.color;
+            tempColor.a = 1.0f;
+            slotIcon.color = tempColor;
         }
     }
 

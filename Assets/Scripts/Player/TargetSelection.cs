@@ -3,6 +3,8 @@ using UnityEngine.EventSystems;
 
 public class TargetSelection : MonoBehaviour
 {
+    public SoftwareCursor swCursor;
+
     [SerializeField]
     private Transform selection;
 
@@ -32,7 +34,7 @@ public class TargetSelection : MonoBehaviour
             highlight = null;
         }
 
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        Ray ray = Camera.main.ScreenPointToRay(swCursor.GetCursorPosition());
 
         if (Physics.Raycast(ray, out rayCastHit)) {
             highlight = rayCastHit.transform;
@@ -46,7 +48,7 @@ public class TargetSelection : MonoBehaviour
         }
 
         // Left click select.
-        if (Input.GetMouseButtonDown(0)) {
+        if (swCursor.GetMouseButtonDown(0)) {
             if (highlight) {
                 selection = rayCastHit.transform;
                 highlight = null;
@@ -70,7 +72,7 @@ public class TargetSelection : MonoBehaviour
         }
 
         // Right mouse button, interact
-        if (Input.GetMouseButtonDown(1)) {
+        if (swCursor.GetMouseButtonDown(1)) {
             if (highlight) {
                 selection = rayCastHit.transform;
                 highlight = null;

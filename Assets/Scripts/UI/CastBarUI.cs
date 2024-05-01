@@ -11,14 +11,14 @@ public class CastBarUI : MonoBehaviour
     bool startCast = false;
 
     public void StartCastbar(float maxTime) {
-        this.castBarMaxTime = maxTime;
+        castBarMaxTime = maxTime;
         castBarSliderUI.value = 0;
         castBarCurrentTime = 0;
         startCast = true;
    }
 
     public void StopCastbar() {
-        this.castBarMaxTime = 0.0f;
+        castBarMaxTime = 0.0f;
         castBarSliderUI.value = 0;
         startCast = false;
     }
