@@ -36,9 +36,10 @@ public class StatusEffectManager : MonoBehaviour, IEffectable
         }  
     }
 
-    void CreateAndAddToUnitFrame(StatusEffectData effect) {
+    void CreateAndAddToUnitFrame(CharacterStats casterStats, StatusEffectData effect) {
         StatusEffectStruct newEffect = new StatusEffectStruct();
         newEffect.statusEffectData = effect;
+        newEffect.casterStats = casterStats;
         if (unitFrameStatusEffectUI != null) {
             newEffect.statusEffectUiElement = Instantiate(statusEffectPrefab, unitFrameStatusEffectUI);
             newEffect.statusEffectUiElement.transform.GetChild(0).GetComponent<Image>().sprite = effect.icon;
@@ -60,7 +61,7 @@ public class StatusEffectManager : MonoBehaviour, IEffectable
         }
     }
     
-    public void ApplyEffect(StatusEffectData effect) {
+    public void ApplyEffect(CharacterStats casterStats, StatusEffectData effect) {
         // If the effect is valid.
         if (effect != null) {
             // If effect is already applied, refresh the time to max
@@ -71,7 +72,7 @@ public class StatusEffectManager : MonoBehaviour, IEffectable
                 check.currentEffectTime = 0;
                 check.nextTickTime = 0;
             } else {
-                CreateAndAddToUnitFrame(effect);
+                CreateAndAddToUnitFrame(casterStats, effect);
             }
 
             CreateAndAddToNameplate(effect);
@@ -122,7 +123,7 @@ public class StatusEffectManager : MonoBehaviour, IEffectable
         for (int i = 0; i < statusEffectTracker.Count; i++) {
             if (statusEffectTracker[i].currentEffectTime > statusEffectTracker[i].nextTickTime) {
                 statusEffectTracker[i].nextTickTime += statusEffectTracker[i].statusEffectData.tickSpeed;
-                statusEffectTracker[i].statusEffectData.Process(transform);
+                statusEffectTracker[i].statusEffectData.Process(statusEffectTracker[i].casterStats.transform, transform);
             }
         }
     }

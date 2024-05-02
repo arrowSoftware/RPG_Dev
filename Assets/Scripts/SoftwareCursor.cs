@@ -7,6 +7,11 @@ public class SoftwareCursor : MonoBehaviour
     public Canvas canvas;
     public float mouseSensitivity = 15.0f;
 
+    public static SoftwareCursor instance;
+    void Awake() {
+        instance = this;
+    }
+
     void Start()
     {
         Cursor.visible = false;

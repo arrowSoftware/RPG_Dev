@@ -21,6 +21,9 @@ public class Ability : ScriptableObject
     // Icon is this ability
     public Sprite icon;
 
+    // If the AOE is placed with a targeting circle from the mouse.
+    public bool placedAOE;
+
     // Activation function, caster is the entity activating this ability, target
     // is the target entitify to receive the effect of this ability.
     // Returns if the ability was acivated, true for activated, false for not.

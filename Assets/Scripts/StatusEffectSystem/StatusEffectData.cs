@@ -25,14 +25,15 @@ public class StatusEffectData : ScriptableObject
     public float lifetime;
     public GameObject EffectParticles;
 
-    public virtual void Process(Transform target) {}
+    public virtual void Process(Transform caster, Transform target) {}
     public virtual void Cleanup(Transform target) {}
 }
 
 [System.Serializable]
 public class StatusEffectStruct {
     public StatusEffectData statusEffectData;
-    public GameObject statusEffectUiElement;    
+    public CharacterStats casterStats;
+    public GameObject statusEffectUiElement;
     public float currentEffectTime;
     public float nextTickTime;
 };

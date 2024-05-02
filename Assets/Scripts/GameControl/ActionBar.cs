@@ -9,8 +9,8 @@ public class ActionBar : MonoBehaviour
     Controls playerControls;
     GameObject player;
     AbilityManager abilityManager;
-    public List<Ability> activeAbilities = new List<Ability>(10);
     private List<ControlBinding> actionBarSlots = new List<ControlBinding>(10);
+    public List<Ability> activeAbilities = new List<Ability>(10);
     public ActionBarUI actionBarUIScript;
     public Transform actionBarUI;
 

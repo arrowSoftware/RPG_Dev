@@ -15,16 +15,16 @@ public class Projectile : MonoBehaviour
     public Vector2 maxNoise = new Vector2(3.0f, 1.0f);
 
     private Transform target;
-    private Transform player;
+    private Transform caster;
     private float yOffset = 1.0f;
     private float moveSpeed = 1.0f;
     private Ability ability;
     private StatusEffectData statusEffect;
 
-    public void Spawn(Ability ability, StatusEffectData statusEffect, int damage, Transform player, Transform target, float speed) {
+    public void Spawn(Ability ability, StatusEffectData statusEffect, int damage, Transform caster, Transform target, float speed) {
         this.damage = damage;
         this.target = target;
-        this.player = player;
+        this.caster = caster;
         this.moveSpeed = speed;
         this.ability = ability;
         this.statusEffect = statusEffect;
@@ -56,14 +56,14 @@ public class Projectile : MonoBehaviour
     }
 
     private void OnTriggerEnter(Collider other) {
-        if (other.transform != player && other.transform == target) {
-            Debug.Log("Contact");
+        if (other.transform == target) {
             CharacterStats stats;
             if (other.TryGetComponent<CharacterStats>(out stats)) {
-                stats.TakeDamage(damage, null, false);
+                CharacterStats casterStats = caster.GetComponent<CharacterStats>();
+                stats.TakeDamage(casterStats, damage, null);
                 var effectable = target.GetComponent<IEffectable>();
                 if (effectable != null) {
-                    effectable.ApplyEffect(statusEffect);
+                    effectable.ApplyEffect(casterStats, statusEffect);
                 }
             }
             Destroy(gameObject);

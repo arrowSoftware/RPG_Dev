@@ -10,14 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 27a4aa070055622488c064d97c5a7c8c, type: 3}
-  m_Name: AOESpotHealSO
+  m_Name: PlacedAOESpotHealSO
   m_EditorClassIdentifier: 
-  name: AOE Spot Heal
+  name: Placed AOE Spot Heal
   cooldownTime: 10
   castTime: 0
   maxRange: 40
   minRange: 0
-  icon: {fileID: 21300000, guid: 231b8222201ffbb4f9d9e349965dd965, type: 3}
+  icon: {fileID: 21300000, guid: 7251caa04f8f4354aa95a4241df5db65, type: 3}
+  placedAOE: 1
   AOESpotHealPrefab: {fileID: 7141520442840724549, guid: c2d2f43318aaa154e8a82b810146fb63, type: 3}
   aoeSpotType: 0
   valuePerTick: 12

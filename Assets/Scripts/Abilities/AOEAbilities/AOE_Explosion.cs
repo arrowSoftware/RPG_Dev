@@ -8,23 +8,37 @@ public class AOE_Explosion : Ability
     // https://www.youtube.com/watch?v=ode1-TwzNT0 
     Transform caster;
     Transform target;
+    CharacterStats casterStats;
+    CharacterStats targetStats;
     public GameObject explosionPrefab;
 
-    public override bool Activate(Transform player, Transform target) {
-        caster = player;
+    public override bool Activate(Transform caster, Transform target) {
+        this.caster = caster;
         this.target = target;
+        casterStats = caster.GetComponent<CharacterStats>();
+        targetStats = target.GetComponent<CharacterStats>();
+
         GameObject explosion = Instantiate(explosionPrefab, caster);
         explosion.transform.position = caster.position + new Vector3(0, 1, 0);
+
         CheckForContacts();
         Destroy(explosion, 0.5f);
         return true;
     }
 
     void CheckForContacts() {
+        CharacterStats stats;
         Collider[] colliders = Physics.OverlapSphere(caster.position, 4.0f);
         foreach (Collider collider in colliders) {
-            if (collider.GetComponent<CharacterStats>()) {
-                collider.GetComponent<CharacterStats>().TakeDamage(50, this, false);
+            if (collider.TryGetComponent<CharacterStats>(out stats)) {
+                // If the caster is an enemy only damage friendlies in the area
+                if (casterStats.enemy && !stats.enemy) {
+                    stats.TakeDamage(casterStats, 50, this);
+                }
+                // if the caster is a friendly only damage enemies in the area.
+                if (!casterStats.enemy && stats.enemy) {
+                    stats.TakeDamage(casterStats, 50, this);
+                }
             }
         }
     }

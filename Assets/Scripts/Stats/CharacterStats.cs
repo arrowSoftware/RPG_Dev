@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.TextCore.Text;
 using UnityEngine.UI;
 
 public class CharacterStats : MonoBehaviour
@@ -111,8 +112,27 @@ public class CharacterStats : MonoBehaviour
         immune = value;
     }
 
-    public void TakeDamage(float damage, Ability ability, bool crit) {
+    bool GetCritRoll() {
+        bool isCrit = false;
+        int critRoll = Random.Range(0, 100);
+        if (critRoll <= criticalChance.GetValue()) {
+            isCrit = true;
+        }
+        return isCrit;
+    }
+
+    public void TakeDamage(CharacterStats casterStats, float damage, Ability ability) {
         if (!immune) {
+            bool crit = false;
+            // Telegraphed aoe attacks arent based on caster damage, and are envionment AOE.
+            if (casterStats != null) {
+                crit = casterStats.GetCritRoll();
+                if  (crit) {
+                    damage *= 2;
+                }
+            }
+
+            // TODO apply targets crit reduction roll to damage.
             damage -= armor.GetValue();
             damage = Mathf.Clamp(damage, 0, int.MaxValue);
         
@@ -133,13 +153,17 @@ public class CharacterStats : MonoBehaviour
         }
     }
 
-    public void Heal(int amount) {
+    public void Heal(CharacterStats casterStats, int amount) {
         if (currentHealth <= maxHealth) {
+            bool crit = casterStats.GetCritRoll();
+            if  (crit) {
+                amount *= 2;
+            }
             currentHealth += amount;
             currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
 
             if (floatingTextPrefab != null) {
-                ShowFloatingText(amount.ToString(), true, false);
+                ShowFloatingText(amount.ToString(), true, crit);
             }
 
             if (OnHealthChanged != null) {

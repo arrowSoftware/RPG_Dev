@@ -13,12 +13,13 @@ MonoBehaviour:
   m_Name: AOESpotDamageSO
   m_EditorClassIdentifier: 
   name: AOE Spot Damage
-  cooldownTime: 30
-  activeTime: 0
-  maxRange: 4
+  cooldownTime: 10
+  castTime: 0
+  maxRange: 40
+  minRange: 0
   icon: {fileID: 21300000, guid: 71dfac4b9c4a274449fc43927e5a1772, type: 3}
-  AOESpotHealPrefab: {fileID: 5822620830461707883, guid: c8d7a5f354eb92843bd21815424f6555, type: 3}
+  AOESpotHealPrefab: {fileID: 6574579426303699756, guid: 3a276ff7efd575f4f867fbd25906a85d, type: 3}
   aoeSpotType: 1
-  valuePerTick: 33
+  valuePerTick: 12
   tickInterval: 1
   duration: 10

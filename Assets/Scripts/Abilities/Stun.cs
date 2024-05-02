@@ -5,22 +5,21 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New Stun Ability", menuName = "Abilites/Stun")]
 public class Stun : Ability
 {
-    CharacterStats playerStats;
+    CharacterStats casterStats;
     CharacterStats targetStats;
     public StatusEffectData statusEffect;
 
     public override bool Activate(Transform player, Transform target) {
-        playerStats = player.gameObject.GetComponent<PlayerStats>();
-        targetStats = target.gameObject.GetComponent<EnemyStats>();
+        casterStats = player.gameObject.GetComponent<CharacterStats>();
+        targetStats = target.gameObject.GetComponent<CharacterStats>();
 
         float distance = Vector3.Distance(player.position, target.position);
 
         // If within range, attack
         if (distance <= maxRange) {
-            target.gameObject.GetComponent<EnemyController>().Aggro(player);
             var effectable = target.GetComponent<IEffectable>();
             if (effectable != null && statusEffect != null) {
-                effectable.ApplyEffect(statusEffect);
+                effectable.ApplyEffect(casterStats, statusEffect);
             }
             return true;
         } else {

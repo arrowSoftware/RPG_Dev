@@ -12,6 +12,11 @@ public class AbilityManager : MonoBehaviour
     *   https://www.youtube.com/watch?v=k7whbYamd_w 
     */
 
+    public GameObject AOESelectionPrefab;
+    GameObject AOESelectionGameObject;
+    AbilityCoolDown placedAbility;
+    Transform tempPlacedTransform;
+
     // Castbar reference
     public CastBarUI castbar;
 
@@ -174,6 +179,22 @@ public class AbilityManager : MonoBehaviour
                 }
             }
         }
+
+        if (AOESelectionGameObject) {
+            Ray ray = Camera.main.ScreenPointToRay(SoftwareCursor.instance.GetCursorPosition());
+            if (Physics.Raycast(ray, out RaycastHit rayCastHit)) {
+                AOESelectionGameObject.transform.position = rayCastHit.point + new Vector3(0, 0.05f, 0);
+                if (SoftwareCursor.instance.GetMouseButtonDown(0)) {
+                    // Spawn a new empty gameobject at the hit point to use as the target.
+                    // delete the spot when the ability ends.
+                    GameObject tempObject = new GameObject("AOESelectionTarget");
+                    tempObject.transform.position = AOESelectionGameObject.transform.position;
+                    target = tempObject.transform;
+                    castedAbilityCR = StartCoroutine(CastAbility(placedAbility));
+                    Destroy(AOESelectionGameObject);
+                }
+            }
+        }
     }
 
     public void CancelCurrentAbilityCast() {
@@ -214,14 +235,25 @@ public class AbilityManager : MonoBehaviour
 
     public void HandleAbility(Ability newAbility) {
         // If ability has a cast time, start a timer here, and if the cast bar finished activate the ability. TODO
+        
         // Find ability in active ability list
         AbilityCoolDown abilityCooldown = activeAbilities.Find((x) => x.ability == newAbility);
 
-        // If the ability is not on a cooldown.
-        if (!abilityCooldown.isOnCooldown && !isOnGlobalCooldown && !isOnStunCooldown && !isAbilityActive) {
-            // If the ability has a cast time, start a sub routine to activate the ability after x seconds.
-            castedAbilityCR = StartCoroutine(CastAbility(abilityCooldown));
+        // If this is a placed ability, we need to set the mouse cursor to the placing circle.
+        // then wait for the mouse click to start the ability function, the target bein the click position.
+        if (newAbility.placedAOE) {
+            if (!abilityCooldown.isOnCooldown && !isOnGlobalCooldown && !isOnStunCooldown && !isAbilityActive) {
+                AOESelectionGameObject = Instantiate(AOESelectionPrefab);
+                placedAbility = abilityCooldown;
+            }
+        } else {
+            // If the ability is not on a cooldown.
+            if (!abilityCooldown.isOnCooldown && !isOnGlobalCooldown && !isOnStunCooldown && !isAbilityActive) {
+                // If the ability has a cast time, start a sub routine to activate the ability after x seconds.
+                castedAbilityCR = StartCoroutine(CastAbility(abilityCooldown));
+            }
         }
+
     }
 
     // Callback function for when a target has been selected by the target selection

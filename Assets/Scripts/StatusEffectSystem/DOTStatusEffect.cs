@@ -5,9 +5,14 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New DOT Status Effect", menuName = "Status Effects/DOT")]
 public class DOTStatusEffect : StatusEffectData
 {
-    public override void Process(Transform target) {
-        target.GetComponent<CharacterStats>().TakeDamage(valueOverTimeAmount, null, false);
+    CharacterStats casterStats;
+    CharacterStats targetStats;
+
+    public override void Process(Transform caster, Transform target) {
+        casterStats = caster.GetComponent<CharacterStats>();
+        targetStats = target.GetComponent<CharacterStats>();
+        targetStats.TakeDamage(casterStats, valueOverTimeAmount, null);
     }
-    public override void Cleanup(Transform target) {
-    }
+
+    public override void Cleanup(Transform target) {}
 }

@@ -10,6 +10,7 @@ public class AOETelegraphScalar : MonoBehaviour
     public Vector3 scaleDirection;
     public bool looping = false;
     public float damageValue = 100.0f;
+    CharacterStats casterStats;
 
     bool isScaling = false;
     Coroutine coroutine;
@@ -81,7 +82,7 @@ public class AOETelegraphScalar : MonoBehaviour
 
         foreach (Collider collider in colliders) {
             if (collider.GetComponent<CharacterStats>()) {
-                collider.GetComponent<CharacterStats>().TakeDamage(damageValue, null, false);
+                collider.GetComponent<CharacterStats>().TakeDamage(null, damageValue, null);
             }
         }
         colliders.Clear();

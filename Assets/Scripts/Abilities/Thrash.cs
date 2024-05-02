@@ -5,36 +5,29 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New Thrash Ability", menuName = "Abilites/Thrash")]
 public class Thrash : Ability
 {
-    CharacterStats playerStats;
+    CharacterStats casterStats;
     CharacterStats targetStats;
-    bool crit = false;
     public StatusEffectData statusEffect;
 
-    public override bool Activate(Transform player, Transform target) {
-        playerStats = player.gameObject.GetComponent<PlayerStats>();
-        targetStats = target.gameObject.GetComponent<EnemyStats>();
+    public override bool Activate(Transform caster, Transform target) {
+        casterStats = caster.gameObject.GetComponent<CharacterStats>();
+        targetStats = target.gameObject.GetComponent<CharacterStats>();
 
-        float distance = Vector3.Distance(player.position, target.position);
+        float distance = Vector3.Distance(caster.position, target.position);
 
         // If within range, attack
         if (distance <= maxRange) {
-            target.gameObject.GetComponent<EnemyController>().Aggro(player);
-            float damage = playerStats.physicalDamage.GetValue();
-            int critRoll = Random.Range(0, 100);
-            if (critRoll <= playerStats.criticalChance.GetValue()) {
-                damage *= 2;
-                crit = true;                
+            if ((!casterStats.enemy && targetStats.enemy) || (casterStats.enemy && !targetStats.enemy)) {
+                float damage = casterStats.physicalDamage.GetValue();
+                var effectable = target.GetComponent<IEffectable>();
+                if (effectable != null && statusEffect != null) {
+                    effectable.ApplyEffect(casterStats, statusEffect);
+                }
+                targetStats.TakeDamage(casterStats, damage, this);
+                targetStats.TakeDamage(casterStats, damage, this);
+                targetStats.TakeDamage(casterStats, damage, this);
+                return true;
             }
-            var effectable = target.GetComponent<IEffectable>();
-            if (effectable != null && statusEffect != null) {
-                effectable.ApplyEffect(statusEffect);
-            }
-            targetStats.TakeDamage(damage, this, crit);
-            targetStats.TakeDamage(damage, this, crit);
-            targetStats.TakeDamage(damage, this, crit);
-            // reset crit
-            crit = false;
-            return true;
         } else {
             GameManager.instance.SetWarning();
         }

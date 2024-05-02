@@ -14,6 +14,7 @@
 // https://wago.io/OmmE6SX67
 // AOE zones 
 // https://www.google.com/imgres?q=aoe%20attacks%20game&imgurl=https%3A%2F%2Fffxiv.consolegameswiki.com%2Fmediawiki%2Fimages%2Fthumb%2Fd%2Fd8%2FLine_AoE1.jpg%2F300px-Line_AoE1.jpg&imgrefurl=https%3A%2F%2Fffxiv.consolegameswiki.com%2Fwiki%2FColumn_AoE&docid=JFZrHjmQTTo64M&tbnid=LxYAX0SJs5LZUM&vet=12ahUKEwj8irqM6OqFAxWU5skDHeCcB3IQM3oECGAQAA..i&w=300&h=380&hcb=2&ved=2ahUKEwj8irqM6OqFAxWU5skDHeCcB3IQM3oECGAQAA
+// https://forum.unity.com/threads/a-comprehensive-guide-to-the-execution-order-of-unity-event-functions.1381647/
 
 # Tasks:
 Ability types:
@@ -22,11 +23,16 @@ Ability types:
  - [ ] Ranged attacks
  - [ ] Ranged AOE attacks
  - [ ] AOE Attack
- - - [ ] Spot point AOE, Drop spot at location and it damages/heals all enemies/friendlies standing inside it.
- - - - [ ] Attach spot to target and it moves with the target (New world beacon).
+ - - [X] Spot point AOE, Drop spot at location and it damages/heals all enemies/friendlies standing inside it.
+ - - - [X] Attach spot to target and it moves with the target (New world beacon).
+ - - - [X] Drop spot on self and it follows self.
  - - - [ ] Drop spot at location and it stays there (New world sacred ground)
+ - - - - When activating the ability, it changes the mouse cursor to the selection ring, when the mouse button is clicked it activated the spot aoe ability which spawns the aoe spot at that location.
  - - [ ] Channled spot AOE, while casting a spot point is active, when the casting is done the spot is destroyed (Blizzard, rain of fire)
  - - [ ] Explosion AOE, a blast of damage is sent off in a sphere damaging/healing all in radius, (wow arcane explosion, metoer splash damage, holy nova..)
  - - [ ] Line AOE, a line of damaging/healing spot is placed in a line in front of the caster, all player inide this line are effected
  - - [ ] ORB AOE, orb is sent out in a direction for x second, whoever it hits damages/heals
  - - [ ] Shape based AOE, trapazoid/cone based attacks that effect all players in the area.
+UI
+- [ ] Range based enemy nameplate
+- [ ] stacking nameplates

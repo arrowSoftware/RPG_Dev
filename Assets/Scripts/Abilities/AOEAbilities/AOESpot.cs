@@ -13,13 +13,34 @@ public class AOESpot : Ability
     public int tickInterval;
     public int duration;
 
-    public override bool Activate(Transform player, Transform target) {
-        caster = player;
+    public override bool Activate(Transform caster, Transform target) {
+        this.caster = caster;
         this.target = target;
-        GameObject explosion = Instantiate(AOESpotHealPrefab);
-        explosion.transform.position = caster.position + new Vector3(0, 0.1f, 0);
-        explosion.transform.GetComponent<AOESpot_Mono>().SetAOEDetails(tickInterval, aoeSpotType, valuePerTick);
-        Destroy(explosion, duration);
+        GameObject spot;
+        if (placedAOE) {
+                spot = Instantiate(AOESpotHealPrefab);
+                target.SetParent(spot.transform);
+                spot.transform.position = target.position + new Vector3(0, 0.05f, 0);
+                spot.transform.rotation = Quaternion.Euler(90, 0, 0);
+        } else {
+            if (target != null) {
+                // A healing target can be applied to an enemy or a friendly.
+                spot = Instantiate(AOESpotHealPrefab);
+                spot.transform.SetParent(target, true);
+                spot.transform.position = target.position + new Vector3(0, 0.05f, 0);
+                spot.transform.rotation = Quaternion.Euler(90, 0, 0);
+            } else {
+                // If no target is selected, drop it on self.
+                spot = Instantiate(AOESpotHealPrefab);
+                spot.transform.SetParent(caster, true);
+                spot.transform.position = caster.position + new Vector3(0, 0.05f, 0);
+                spot.transform.rotation = Quaternion.Euler(90, 0, 0);
+                target = caster;
+            }
+        }
+
+        spot.transform.GetComponent<AOESpot_Mono>().SetAOEDetails(caster, target, this, tickInterval, aoeSpotType, valuePerTick);
+        Destroy(spot, duration);
         return true;
     }
 }

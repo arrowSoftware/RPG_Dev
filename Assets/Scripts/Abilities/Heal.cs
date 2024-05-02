@@ -5,23 +5,27 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New Heal Ability", menuName = "Abilites/Heal")]
 public class Heal : Ability
 {
-    CharacterStats playerStats;
+    CharacterStats casterStats;
     CharacterStats targetStats;
     public StatusEffectData statusEffect;
 
-    public override bool Activate(Transform player, Transform target) {
-        playerStats = player.gameObject.GetComponent<PlayerStats>();
-        targetStats = target.gameObject.GetComponent<EnemyStats>();
+    public override bool Activate(Transform caster, Transform target) {
+        casterStats = caster.gameObject.GetComponent<CharacterStats>();
+        targetStats = target.gameObject.GetComponent<CharacterStats>();
 
         // If the target is an enemy then heal self, other wise heal the target.
         if (targetStats.enemy) {
-            playerStats.Heal(10);
-            var effectable = player.GetComponent<IEffectable>();
-            effectable.ApplyEffect(statusEffect);
+            casterStats.Heal(casterStats, 10);
+            var effectable = caster.GetComponent<IEffectable>();
+            if (effectable != null && statusEffect != null) {
+                effectable.ApplyEffect(casterStats, statusEffect);
+            }
        } else {
-            targetStats.Heal(20);
+            targetStats.Heal(casterStats, 20);
             var effectable = target.GetComponent<IEffectable>();
-            effectable.ApplyEffect(statusEffect);
+            if (effectable != null && statusEffect != null) {
+                effectable.ApplyEffect(casterStats, statusEffect);
+            }
         }
 
         return true;
