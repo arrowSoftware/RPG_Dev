@@ -17,6 +17,11 @@
 // https://forum.unity.com/threads/a-comprehensive-guide-to-the-execution-order-of-unity-event-functions.1381647/
 
 # Tasks:
+Nameplate:
+- [ ] Show nameplate when within x units of player
+- [ ] Show only health of unity, level, name and status effects.,=
+Unit Frame
+- [ ] Targer frame, show mana if they ahve some
 Ability types:
  - [ ] Melee attacks
  - - [X] Single target attack

@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-[RequireComponent(typeof(CharacterStats))]
+//[RequireComponent(typeof(CharacterStats))]
 public class PlayerUnitframeUI : MonoBehaviour
 {
     public Transform ui;

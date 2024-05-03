@@ -5,7 +5,7 @@ public class Interactable : MonoBehaviour
 {
     public float radius = 3.0f; // distance to get to object to interact.
     bool isFocus = false;
-    public Transform player;
+    Transform player;
     bool hasInteracted = false;
     public Transform interactionTransform;
 

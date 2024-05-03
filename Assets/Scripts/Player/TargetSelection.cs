@@ -30,45 +30,46 @@ public class TargetSelection : MonoBehaviour
             return;
         }
         
+
         if (highlight != null) {
             highlight = null;
         }
 
+        // Cast a ray at the mouse position 
         Ray ray = Camera.main.ScreenPointToRay(swCursor.GetCursorPosition());
-
         if (Physics.Raycast(ray, out rayCastHit)) {
+            // store the transform of the "hover" hit object
             highlight = rayCastHit.transform;
-            Interactable interactable = rayCastHit.collider.GetComponent<Interactable>();
-
-            if (interactable != null /*&& highlight != selection*/) {
-
+            if (rayCastHit.collider.TryGetComponent<Interactable>(out Interactable interactable)) {
+                // Interactable object found
             } else {
+                // Not an interactable object, clear the highlight
                 highlight = null;
             }
         }
 
         // Left click select.
         if (swCursor.GetMouseButtonDown(0)) {
+            // If there is a highlighted interactable
             if (highlight) {
-                selection = rayCastHit.transform;
+                // Set the selction
+                selection = highlight;
+                // Clear the highlight
                 highlight = null;
+                // Broadcast the new selection.
                 if (OnTargetSelected != null) {
                     OnTargetSelected(selection);
                 }
 
+                // If there was a selection circle spawned already, destroy it before placing a new one.
                 if (selectionCircle != null) {
                     Destroy(selectionCircle);
                 }
+
+                // Create the new selection circle.
                 selectionCircle = Instantiate(selectionCirclePrefab, canvas.transform);
                 selectionCircle.transform.localScale = new Vector3(2, 2);
-            } /*else {
-                if (selection) {
-                    selection.gameObject.GetComponent<Outline>().enabled = false;
-                    selection = null;
-                    OnTargetSelected(null);
-                    RemoveFocus();
-                }
-            }*/
+            }
         }
 
         // Right mouse button, interact
@@ -81,13 +82,7 @@ public class TargetSelection : MonoBehaviour
                 if (interactable != null) {
                     SetFocus(interactable);
                 }
-            }/* else {
-                if (selection) {
-                    selection.gameObject.GetComponent<Outline>().enabled = false;
-                    selection = null;
-                    RemoveFocus();
-                }
-            }*/
+            }
         }
 
         if (Input.GetKeyDown(KeyCode.Escape)) {
@@ -108,8 +103,11 @@ public class TargetSelection : MonoBehaviour
             return;
         }
 
+        // If there is a selection circle then move the selection circle with the target.
         if (selectionCircle != null) {
             selectionCircle.transform.position = selection.position;
+            // Attach the selection circle at the feet of the target.
+            // set the scale of the circle, relative to the target.
         }
     }
 

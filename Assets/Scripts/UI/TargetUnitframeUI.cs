@@ -4,15 +4,15 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-[RequireComponent(typeof(CharacterStats))]
-[RequireComponent(typeof(TargetSelection))]
 public class TargetUnitframeUI : MonoBehaviour
 {
     TargetSelection targetSelection;
 
     public Transform ui;
-    public Transform target;
+    Transform currentSelection;
+
     [Header("Info Bar")]
+    Transform infoBar;
     TMP_Text nameText;
     TMP_Text levelText;
 
@@ -23,13 +23,6 @@ public class TargetUnitframeUI : MonoBehaviour
     float currentHealth = 100;
     float maxHealth = 100;
 
-    [Header("Power Bar")]
-    Slider powerSlider;
-    TMP_Text powerTextPercent;
-    TMP_Text powerTextCurrent;
-    float currentPower = 100;
-    float maxPower = 100;
-
     void Start()
     {
         ui.gameObject.SetActive(false);
@@ -37,46 +30,49 @@ public class TargetUnitframeUI : MonoBehaviour
         targetSelection = GetComponent<TargetSelection>();
         targetSelection.OnTargetSelected += OnTargetSelected;
     
-        healthSlider = ui.GetChild(1).GetComponent<Slider>();
-        healthTextPercent = ui.GetChild(1).GetChild(1).GetComponent<TMP_Text>();
-        healthTextCurrent = ui.GetChild(1).GetChild(2).GetComponent<TMP_Text>();
+        healthSlider = ui.GetChild(0).GetComponent<Slider>();
 
-        powerSlider = ui.GetChild(2).GetComponent<Slider>();
-        powerTextPercent = ui.GetChild(2).GetChild(1).GetComponent<TMP_Text>();
-        powerTextCurrent = ui.GetChild(2).GetChild(2).GetComponent<TMP_Text>();
+        infoBar = ui.GetChild(1);
+        nameText = infoBar.GetChild(1).GetComponent<TMP_Text>();
+        levelText = infoBar.GetChild(0).GetComponent<TMP_Text>();
+
+//        healthTextPercent = ui.GetChild(0).GetChild(1).GetComponent<TMP_Text>();
+//        healthTextCurrent = ui.GetChild(0).GetChild(2).GetComponent<TMP_Text>();
    }
 
     void OnHealthChanged(float maxHealth, float currentHealth) {
+        Debug.Log("Changed");
         float healthPercent = (float)currentHealth / maxHealth;
         healthSlider.value = healthPercent;
-        healthTextPercent.SetText((healthPercent * 100).ToString("f1") + "%");
-        healthTextCurrent.SetText(((int)(healthPercent * maxHealth)).ToString());
+//        healthTextPercent.SetText((healthPercent * 100).ToString("f1") + "%");
+//        healthTextCurrent.SetText(((int)(healthPercent * maxHealth)).ToString());
 
         this.currentHealth = currentHealth;
         this.maxHealth = maxHealth;
     }
 
-    void OnPowerChanged(int maxPower, int currentPower) {
-        float powerPercent = (float)currentPower / maxPower;
-        powerSlider.value = powerPercent;
-        powerTextPercent.SetText(((int)(powerPercent * 100)).ToString() + "%");
-        powerTextCurrent.SetText(((int)(powerPercent * maxPower)).ToString()); 
-
-        this.currentPower = currentPower;
-        this.maxPower = maxPower;
+    void SetFrameData(CharacterStats stats) {
+        nameText.SetText(stats.name);
+        levelText.SetText(stats.level.ToString());
+        float healthPercent = (float)stats.currentHealth / stats.maxHealth;
+        healthSlider.value = healthPercent;  
+        this.currentHealth = stats.currentHealth;
+        this.maxHealth = stats.maxHealth;
     }
 
     void OnTargetSelected(Transform selection) {
-        if (selection != null) {
-            selection.GetComponent<CharacterStats>().OnHealthChanged += OnHealthChanged;
-            //selection.GetComponent<CharacterStats>().OnPowerChanged += OnPowerChanged;
+        if (selection != currentSelection && currentSelection != null) {
+            currentSelection.GetComponent<CharacterStats>().OnHealthChanged -= OnHealthChanged;
+        }
 
-            nameText = ui.GetChild(0).GetChild(0).GetComponent<TMP_Text>();
-            nameText.SetText(selection.name);
+        if (selection != null) {
+            currentSelection = selection;
+            selection.GetComponent<CharacterStats>().OnHealthChanged += OnHealthChanged;
+            SetFrameData(selection.GetComponent<CharacterStats>());
             ui.gameObject.SetActive(true);
         } else {
-            nameText = ui.GetChild(0).GetChild(0).GetComponent<TMP_Text>();
             nameText.SetText("");
+            levelText.SetText("");
             ui.gameObject.SetActive(false);
         }
     }

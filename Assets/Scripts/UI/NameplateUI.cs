@@ -27,19 +27,14 @@ public class NameplateUI : MonoBehaviour
 
         ui = Instantiate(uiPrefab, canvas.transform).transform;
         healthSlider = ui.GetChild(0).GetComponent<Slider>();
-        powerSlider = ui.GetChild(1).GetComponent<Slider>();
 
-        ui.GetChild(2).GetComponent<TMP_Text>().SetText(transform.name);
-
-        int level = transform.GetComponent<CharacterStats>().level;
-        ui.GetChild(4).GetComponent<TMP_Text>().SetText(level.ToString());
+        ui.GetChild(1).GetComponent<TMP_Text>().SetText(transform.name);
 
         ui.gameObject.SetActive(false);
 
-        statusEffectUI = ui.GetChild(3);
+        statusEffectUI = ui.GetChild(2);
     
         GetComponent<CharacterStats>().OnHealthChanged += OnHealthChanged;
-        GetComponent<CharacterStats>().OnPowerChanged += OnPowerChanged;
     }
 
     void LateUpdate()
@@ -47,10 +42,6 @@ public class NameplateUI : MonoBehaviour
         if (ui != null) {
             ui.position = target.position;
             ui.forward = cam.forward;
-
-            if (Time.time - lastMadeVisibleTime > visibleTime) {
-                ui.gameObject.SetActive(false);
-            }
         }
     }
 
@@ -86,9 +77,14 @@ public class NameplateUI : MonoBehaviour
         }
     }
 
+    public void ShowNameplate(bool show) {
+        if (ui != null) {
+            ui.gameObject.SetActive(show);
+        }
+    }
+
     void OnHealthChanged(float maxHealth, float currentHealth) {
         if (ui != null) {
-            ui.gameObject.SetActive(true);
             lastMadeVisibleTime = Time.time;
 
             float healthPercent = (float)currentHealth / maxHealth;
@@ -100,19 +96,6 @@ public class NameplateUI : MonoBehaviour
             if (currentHealth <= 0) {
                 Destroy(ui.gameObject);
             }
-        }
-    }
-
-    void OnPowerChanged(float maxPower, float currentPower) {
-        if (ui != null) {
-            ui.gameObject.SetActive(true);
-            lastMadeVisibleTime = Time.time;
-
-            float powerPercent = currentPower / maxPower;
-            powerSlider.value = powerPercent;
-
-            ui.GetChild(1).GetChild(1).GetComponent<TMP_Text>().SetText((powerPercent*100).ToString("f1") + "%");
-            ui.GetChild(1).GetChild(2).GetComponent<TMP_Text>().SetText(currentPower.ToString() + " / " + maxPower.ToString());
         }
     }
 

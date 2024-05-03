@@ -6,8 +6,7 @@ using UnityEngine.UI;
 
 public class CharacterStats : MonoBehaviour
 {
-    [Header("Base Stats")]
-    private float maxHealth;
+    public float maxHealth {get; private set;}
     private float maxPower;
     public float movementSpeed;
     [Header("Primary Stats")]
