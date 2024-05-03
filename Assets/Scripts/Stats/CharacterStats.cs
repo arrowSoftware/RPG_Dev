@@ -36,6 +36,7 @@ public class CharacterStats : MonoBehaviour
 
     // True is the character cannot mvoe.
     public bool isImmobilized = false;
+    public bool isSlowed = false;
 
     public float currentHealth {get; private set;}
     public float currentPower {get; private set;}

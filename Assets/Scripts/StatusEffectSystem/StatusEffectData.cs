@@ -11,6 +11,7 @@ public class StatusEffectData : ScriptableObject
         HealOverTime,
         DamageOverTime,
         Stun,
+        Slow,
         Silence,
         Root,
         Cleanse,

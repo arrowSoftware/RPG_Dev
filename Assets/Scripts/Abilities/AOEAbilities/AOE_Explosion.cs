@@ -11,6 +11,7 @@ public class AOE_Explosion : Ability
     CharacterStats casterStats;
     CharacterStats targetStats;
     public GameObject explosionPrefab;
+    public bool heal;
 
     public override bool Activate(Transform caster, Transform target) {
         this.caster = caster;
@@ -31,13 +32,24 @@ public class AOE_Explosion : Ability
         Collider[] colliders = Physics.OverlapSphere(caster.position, 4.0f);
         foreach (Collider collider in colliders) {
             if (collider.TryGetComponent<CharacterStats>(out stats)) {
-                // If the caster is an enemy only damage friendlies in the area
-                if (casterStats.enemy && !stats.enemy) {
-                    stats.TakeDamage(casterStats, 50, this);
-                }
-                // if the caster is a friendly only damage enemies in the area.
-                if (!casterStats.enemy && stats.enemy) {
-                    stats.TakeDamage(casterStats, 50, this);
+                if (heal) {
+                    // If the caster is an enemy only heal enemies in the area
+                    if (casterStats.enemy && stats.enemy) {
+                        stats.Heal(casterStats, 50);
+                    }
+                    // if the caster is a friendly only heal friendlies in the area.
+                    if (!casterStats.enemy && !stats.enemy) {
+                        stats.Heal(casterStats, 50);
+                    }
+                } else {
+                    // If the caster is an enemy only damage friendlies in the area
+                    if (casterStats.enemy && !stats.enemy) {
+                        stats.TakeDamage(casterStats, 50, this);
+                    }
+                    // if the caster is a friendly only damage enemies in the area.
+                    if (!casterStats.enemy && stats.enemy) {
+                        stats.TakeDamage(casterStats, 50, this);
+                    }
                 }
             }
         }

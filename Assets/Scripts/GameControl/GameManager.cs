@@ -12,12 +12,23 @@ public class GameManager : MonoBehaviour
 
     public Transform notificationUI;
     bool notificationActive = false;
+    public enum NotificationWarning {
+        OutOfRange,
+        InFrontOfTarget,
+        OutOfEnergy,
+        InvalidTarget
+    }
 
-    void Update() {}
-
-    public void SetWarning() {
+    public void SetWarning(NotificationWarning warning) {
         if (!notificationActive) {
-            StartCoroutine(SendNotification("Out of Range", 3));
+            string warningText = "";
+            switch (warning) {
+                case NotificationWarning.OutOfRange: {warningText = "Out of Range"; break;} 
+                case NotificationWarning.InFrontOfTarget: {warningText = "Must be in front of target"; break;}
+                case NotificationWarning.OutOfEnergy: {warningText = "Out of Energy"; break;}
+                case NotificationWarning.InvalidTarget: {warningText = "Invalid Target"; break;}
+            }
+            StartCoroutine(SendNotification(warningText, 3));
         }
     }
 

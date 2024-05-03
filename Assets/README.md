@@ -19,14 +19,29 @@
 # Tasks:
 Ability types:
  - [ ] Melee attacks
- - [ ] Melee AOE attacks
+ - - [X] Single target attack
+ - - [X] Multiple swing attack
+ - - [X] Multiple target attack
+ - - [X] Whirlwind attack
+ - - [X] Slowing attack
+ - - [x] Stun attack
+ - - [x] Bleeding sttack
+ - - [X] Debuff attack
  - [ ] Ranged attacks
- - [ ] Ranged AOE attacks
+ - - [X] Single target attack
+ - - - [X] Burn/Dot attack
+ - - - [X] Casted ability
+ - - - [X] instant cast
+ - - - [ ] channeled ability
+ - - [X] Multi target attack
+ - - - [X] Multi projectile
+ - - - [X] Splash attack
+ - - - [X] Splash Burn attack
  - [ ] AOE Attack
  - - [X] Spot point AOE, Drop spot at location and it damages/heals all enemies/friendlies standing inside it.
  - - - [X] Attach spot to target and it moves with the target (New world beacon).
  - - - [X] Drop spot on self and it follows self.
- - - - [ ] Drop spot at location and it stays there (New world sacred ground)
+ - - - [X] Drop spot at location and it stays there (New world sacred ground)
  - - - - When activating the ability, it changes the mouse cursor to the selection ring, when the mouse button is clicked it activated the spot aoe ability which spawns the aoe spot at that location.
  - - [ ] Channled spot AOE, while casting a spot point is active, when the casting is done the spot is destroyed (Blizzard, rain of fire)
  - - [ ] Explosion AOE, a blast of damage is sent off in a sphere damaging/healing all in radius, (wow arcane explosion, metoer splash damage, holy nova..)

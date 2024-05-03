@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65701aff3422f37498dfe1425ec2f1e4, type: 3}
+  m_Name: RangedSO
+  m_EditorClassIdentifier: 
+  name: Ranged
+  cooldownTime: 0
+  castTime: 1
+  maxRange: 40
+  minRange: 0
+  icon: {fileID: 21300000, guid: 24314ed062714924d902fdd3a9ce66b6, type: 3}
+  placedAOE: 0
+  statusEffect: {fileID: 0}
+  swingCount: 0
+  targetsCount: 1
+  viewAngle: 60
+  projectilePrefab: {fileID: 8070263214456831828, guid: 41009e01b0c64c641b9ba5e68631d444, type: 3}
+  speed: 30

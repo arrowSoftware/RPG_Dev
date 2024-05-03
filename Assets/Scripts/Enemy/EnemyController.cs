@@ -99,6 +99,8 @@ public class EnemyController : MonoBehaviour
     {
         if (stats.isImmobilized) {
             SetMovementSpeed(0);
+        } else if (stats.isSlowed) {
+            SetMovementSpeed(stats.movementSpeed/2);
         } else {
             SetMovementSpeed(stats.movementSpeed);
         }
