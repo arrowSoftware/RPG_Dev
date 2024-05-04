@@ -41,6 +41,7 @@ public class CharacterStats : MonoBehaviour
     public float currentPower {get; private set;}
     public int level;
     public bool enemy;
+    public bool npc;
 
     [Header("Floating text")]
     public GameObject floatingTextPrefab;

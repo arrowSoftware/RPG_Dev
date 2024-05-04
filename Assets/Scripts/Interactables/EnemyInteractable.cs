@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(CharacterStats))]
-public class Enemy : Interactable
+public class EnemyInteractable : Interactable
 {
     PlayerManager playerManager;
     CharacterStats myStats;
 
     void Start() {
         playerManager = PlayerManager.instance;
+        player = playerManager.player.transform;
         myStats = GetComponent<CharacterStats>();
     }
 

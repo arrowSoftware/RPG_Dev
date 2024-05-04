@@ -5,16 +5,20 @@ public class Interactable : MonoBehaviour
 {
     public float radius = 3.0f; // distance to get to object to interact.
     bool isFocus = false;
-    Transform player;
+//    [HideInInspector]
+    public Transform player;
     bool hasInteracted = false;
     public Transform interactionTransform;
 
     public virtual void Interact() {
+        Debug.Log("Interacting with " + name);
     }
 
     private void Update() {
+        return;
         if (isFocus && !hasInteracted) {
             float distance = Vector3.Distance(player.position, interactionTransform.position);
+            Debug.Log(distance);
             if (distance <= radius) {
                 Interact();
                 hasInteracted = true;
@@ -26,6 +30,13 @@ public class Interactable : MonoBehaviour
         isFocus = true;
         player = playerTransform;
         hasInteracted = false;
+        float distance = Vector3.Distance(player.position, interactionTransform.position);
+        Debug.Log(distance);
+        if (distance <= radius) {
+            Interact();
+        } else {
+            GameManager.instance.SetWarning(GameManager.NotificationWarning.OutOfRange);
+        }
     }
 
     public void OnDefocused() {

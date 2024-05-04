@@ -16,6 +16,8 @@
 // https://www.google.com/imgres?q=aoe%20attacks%20game&imgurl=https%3A%2F%2Fffxiv.consolegameswiki.com%2Fmediawiki%2Fimages%2Fthumb%2Fd%2Fd8%2FLine_AoE1.jpg%2F300px-Line_AoE1.jpg&imgrefurl=https%3A%2F%2Fffxiv.consolegameswiki.com%2Fwiki%2FColumn_AoE&docid=JFZrHjmQTTo64M&tbnid=LxYAX0SJs5LZUM&vet=12ahUKEwj8irqM6OqFAxWU5skDHeCcB3IQM3oECGAQAA..i&w=300&h=380&hcb=2&ved=2ahUKEwj8irqM6OqFAxWU5skDHeCcB3IQM3oECGAQAA
 // https://forum.unity.com/threads/a-comprehensive-guide-to-the-execution-order-of-unity-event-functions.1381647/
 
+# TODO
+Enemy hit boxes, instead of the center of them for the position, melee range on large mobs isnt working.
 # Tasks:
 Nameplate:
 - [ ] Show nameplate when within x units of player

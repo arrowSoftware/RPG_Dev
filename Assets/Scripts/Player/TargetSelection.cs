@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class TargetSelection : MonoBehaviour
 {
@@ -19,6 +20,8 @@ public class TargetSelection : MonoBehaviour
     private RaycastHit rayCastHit;
 
     public event System.Action<Transform> OnTargetSelected;
+
+    // true if this script is controlled by an npc
     public bool npc = false;
     
     void Update() {
@@ -68,7 +71,6 @@ public class TargetSelection : MonoBehaviour
 
                 // Create the new selection circle.
                 selectionCircle = Instantiate(selectionCirclePrefab, canvas.transform);
-                selectionCircle.transform.localScale = new Vector3(2, 2);
             }
         }
 
@@ -105,12 +107,48 @@ public class TargetSelection : MonoBehaviour
 
         // If there is a selection circle then move the selection circle with the target.
         if (selectionCircle != null) {
-            selectionCircle.transform.position = selection.position;
+            float distance = 20.0f;
+            Vector3 hitLocation;
             // Attach the selection circle at the feet of the target.
+            if (Physics.Raycast(selection.position, Vector3.down, out RaycastHit hit, distance)) {
+                hitLocation = hit.point;
+                selectionCircle.transform.position = new Vector3(selection.position.x, hitLocation.y + 0.05f, selection.position.z);
+            } else {
+                // If the target is already on the ground.
+                selectionCircle.transform.position = selection.position + new Vector3(0,  + 0.05f, 0);
+            }
             // set the scale of the circle, relative to the target.
+            // Get the collider attached to the character, find the largest value and scale the cirlce to it.
+            Collider col = selection.GetComponent<Collider>();
+            Vector3 colSize = col.bounds.size;
+            float scaleFactor = FindLargestValueInVector3(colSize) * 2;
+            selectionCircle.transform.localScale = new Vector3(scaleFactor, scaleFactor);
+            
+            // Set the color based on target friendlyness
+            // Get the selections character stats
+            CharacterStats stats = selection.GetComponent<CharacterStats>();
+            if (stats.enemy) {
+                // Set the selecion color to red
+                selectionCircle.GetComponent<Image>().color = Color.red;
+            } else if (stats.npc) {
+                // Set the color to yellow
+                selectionCircle.GetComponent<Image>().color = Color.yellow;
+            } else {
+                // Set the color to green.
+                selectionCircle.GetComponent<Image>().color = Color.green;
+            }
         }
     }
 
+    float FindLargestValueInVector3(Vector3 vec) {
+        float largest = vec.x;
+        if (vec.z > largest) {
+            largest = vec.z;
+        }
+        return largest;
+        
+    }
+    
     void SetFocus(Interactable newFocus) {
         if (newFocus != focus) {
             if (focus != null) {

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Security.Cryptography;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.AI;
 
 public enum MountType {
     flying, ground
@@ -633,5 +634,6 @@ public class PlayerControls : MonoBehaviour
         Physics.SyncTransforms();
         transform.eulerAngles = rotation.eulerAngles;
         velocity = Vector3.zero;
+        GetComponent<NavMeshAgent>().Warp(transform.position);
     }
 }

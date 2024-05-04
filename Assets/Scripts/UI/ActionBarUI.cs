@@ -28,6 +28,7 @@ public class ActionBarUI : MonoBehaviour
     }
 
     void Start() {
+        // TODO this start is happening before the actionbar class.
         actionBar.OnActionBarChanged += OnActionBarChanged;
     }
 

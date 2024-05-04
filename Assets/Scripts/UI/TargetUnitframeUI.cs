@@ -41,7 +41,6 @@ public class TargetUnitframeUI : MonoBehaviour
    }
 
     void OnHealthChanged(float maxHealth, float currentHealth) {
-        Debug.Log("Changed");
         float healthPercent = (float)currentHealth / maxHealth;
         healthSlider.value = healthPercent;
 //        healthTextPercent.SetText((healthPercent * 100).ToString("f1") + "%");
@@ -58,6 +57,17 @@ public class TargetUnitframeUI : MonoBehaviour
         healthSlider.value = healthPercent;  
         this.currentHealth = stats.currentHealth;
         this.maxHealth = stats.maxHealth;
+
+        if (stats.enemy) {
+            // Set the selecion color to red
+            ui.GetChild(0).GetChild(0).GetComponent<Image>().color = Color.red;
+        } else if (stats.npc) {
+            // Set the color to yellow
+            ui.GetChild(0).GetChild(0).GetComponent<Image>().color = Color.yellow;
+        } else {
+            // Set the color to green.
+            ui.GetChild(0).GetChild(0).GetComponent<Image>().color = Color.green;
+        }
     }
 
     void OnTargetSelected(Transform selection) {

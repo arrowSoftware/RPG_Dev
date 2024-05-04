@@ -8,7 +8,7 @@ using TMPro;
 public class NameplateUI : MonoBehaviour
 {
     public GameObject uiPrefab;
-    public Transform target;
+    public Transform nameplateLocation;
     float visibleTime = 10.0f; // Time to keep naeplate active after not taking damge.
     float lastMadeVisibleTime;
     public Canvas canvas;
@@ -34,13 +34,25 @@ public class NameplateUI : MonoBehaviour
 
         statusEffectUI = ui.GetChild(2);
     
-        GetComponent<CharacterStats>().OnHealthChanged += OnHealthChanged;
+        CharacterStats stats =  GetComponent<CharacterStats>();
+        if (stats.enemy) {
+            // Set the selecion color to red
+            ui.GetChild(0).GetChild(0).GetComponent<Image>().color = Color.red;
+        } else if (stats.npc) {
+            // Set the color to yellow
+            ui.GetChild(0).GetChild(0).GetComponent<Image>().color = Color.yellow;
+        } else {
+            // Set the color to green.
+            ui.GetChild(0).GetChild(0).GetComponent<Image>().color = new Color(0.1333f, 0.5698112f, 0.0f, 1.0f);
+        }
+
+        stats.OnHealthChanged += OnHealthChanged;
     }
 
     void LateUpdate()
     {
         if (ui != null) {
-            ui.position = target.position;
+            ui.position = nameplateLocation.position;
             ui.forward = cam.forward;
         }
     }

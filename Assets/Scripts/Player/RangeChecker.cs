@@ -6,6 +6,7 @@ public class RangeChecker : MonoBehaviour
 {
     public float nameplateDetectionRange = 40;
     List<Transform> nameplatesInRange = new List<Transform>();
+    public bool onlyShowEnemyNameplates = false;
 
     void LateUpdate() {
         CheckForContacts();
@@ -26,7 +27,13 @@ public class RangeChecker : MonoBehaviour
         Collider[] colliders = Physics.OverlapSphere(transform.position, nameplateDetectionRange);
         foreach (Collider collider in colliders) {
             if (collider.TryGetComponent<NameplateUI>(out NameplateUI ui)) {
-                if (ui.transform.GetComponent<CharacterStats>().enemy) {
+                if (onlyShowEnemyNameplates) {
+                    if (ui.transform.GetComponent<CharacterStats>().enemy) {
+                        if (!nameplatesInRange.Contains(collider.transform)) {
+                            nameplatesInRange.Add(collider.transform);
+                        }
+                    }
+                } else {
                     if (!nameplatesInRange.Contains(collider.transform)) {
                         nameplatesInRange.Add(collider.transform);
                     }
