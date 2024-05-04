@@ -139,6 +139,8 @@ public class CharacterStats : MonoBehaviour
         
             currentHealth -= damage;
 
+            GameManager.instance.SendDamageMessage(casterStats.name, ability, this.name, damage, crit);
+
             // Instantiate floating text
             if (floatingTextPrefab != null) {
                 ShowFloatingText(damage.ToString(), false, crit);
@@ -154,7 +156,7 @@ public class CharacterStats : MonoBehaviour
         }
     }
 
-    public void Heal(CharacterStats casterStats, int amount) {
+    public void Heal(CharacterStats casterStats, int amount, Ability ability) {
         if (currentHealth <= maxHealth) {
             bool crit = casterStats.GetCritRoll();
             if  (crit) {
@@ -162,6 +164,8 @@ public class CharacterStats : MonoBehaviour
             }
             currentHealth += amount;
             currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
+
+            GameManager.instance.SendHealingMessage(casterStats.name, ability, this.name, amount, crit);
 
             if (floatingTextPrefab != null) {
                 ShowFloatingText(amount.ToString(), true, crit);

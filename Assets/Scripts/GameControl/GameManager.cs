@@ -5,11 +5,21 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    [Header("Chat Window")]
+    [SerializeField]
+    List<ChatMessage> chatMessages= new List<ChatMessage>();
+    public int maxChatMessage = 100;
+    public GameObject chatMessageTextPrefab;
+    public GameObject chatPanel;
+
+#region Singleton
     public static GameManager instance;
     void Awake() {
         instance = this;
     }
+#endregion
 
+    [Header("Notifications")]
     public Transform notificationUI;
     bool notificationActive = false;
     public enum NotificationWarning {
@@ -17,6 +27,41 @@ public class GameManager : MonoBehaviour
         InFrontOfTarget,
         OutOfEnergy,
         InvalidTarget
+    }
+
+    public void SendDamageMessage(string caster, Ability ability, string target, float damage, bool crit) {
+        string damageText = "";
+        if (crit) {
+            damageText = "<color=orange>"+damage+"</color>";
+        } else {
+            damageText = "<color=red>"+damage+"</color>";
+        }
+
+        string text = caster + "'s <b><color=blue>" + ability.name + "</color></b> hits " + target + " for " + damageText + " damage";
+        SendChatMessage(text);
+    }
+
+    public void SendHealingMessage(string caster, Ability ability, string target, float healing, bool crit) {
+        string text = caster + "'s <b><color=blue>" + ability.name + "</color></b> heals " + target + " for <color=green>" + healing + "</color> amount";
+        SendChatMessage(text);
+    }
+
+    public void SendChatMessage(string message) {
+        if (chatMessages.Count >= maxChatMessage) {
+            Destroy(chatMessages[0].textObject.gameObject);
+            chatMessages.Remove(chatMessages[0]);
+        }
+
+        ChatMessage newMessage = new ChatMessage
+        {
+            text = message
+        };
+
+        GameObject newText = Instantiate(chatMessageTextPrefab, chatPanel.transform);
+        newMessage.textObject = newText.GetComponent<TMP_Text>();
+        newMessage.textObject.text = newMessage.text;
+
+        chatMessages.Add(newMessage);
     }
 
     public void SetWarning(NotificationWarning warning) {
@@ -39,4 +84,10 @@ public class GameManager : MonoBehaviour
         notificationUI.GetChild(0).GetComponent<TMP_Text>().SetText("");
         notificationActive = false;
     }
+}
+
+[System.Serializable]
+public class ChatMessage {
+    public string text;
+    public TMP_Text textObject;
 }

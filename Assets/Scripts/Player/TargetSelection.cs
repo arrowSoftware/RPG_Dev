@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class TargetSelection : MonoBehaviour
 {
-    public SoftwareCursor swCursor;
+    SoftwareCursor swCursor;
 
     [SerializeField]
     private Transform selection;
@@ -12,11 +12,12 @@ public class TargetSelection : MonoBehaviour
     [SerializeField]
     private Transform highlight;
 
-    public GameObject selectionCirclePrefab;
-    private GameObject selectionCircle;
-    public Canvas canvas;
-
     public Interactable focus;
+
+    public GameObject selectionCirclePrefab;
+    public Canvas canvas;
+    
+    private GameObject selectionCircle;
     private RaycastHit rayCastHit;
 
     public event System.Action<Transform> OnTargetSelected;
@@ -24,6 +25,10 @@ public class TargetSelection : MonoBehaviour
     // true if this script is controlled by an npc
     public bool npc = false;
     
+    private void Start() {
+        swCursor = SoftwareCursor.instance;
+    }
+
     void Update() {
         if (npc) {
             return;

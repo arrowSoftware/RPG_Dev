@@ -210,7 +210,10 @@ public class AbilityManager : MonoBehaviour
         isOnGlobalCooldown = true;
 
         // Activate the cast bar UI.
-        castbar.StartCastbar(abilityCooldown.ability.castTime);
+        if (castbar) {
+            castbar.StartCastbar(abilityCooldown.ability.castTime);
+        }
+
         isAbilityActive = true;
 
         if (abilityCooldown.ability.castTime == 0) {
@@ -228,7 +231,9 @@ public class AbilityManager : MonoBehaviour
             isAbilityActive = false;
         } else {
             isOnGlobalCooldown = false;
-            castbar.StopCastbar();
+            if (castbar) {
+                castbar.StopCastbar();
+            }
             isAbilityActive = false;
         }
     }

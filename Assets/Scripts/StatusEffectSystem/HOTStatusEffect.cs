@@ -11,7 +11,7 @@ public class HOTStatusEffect : StatusEffectData
     public override void Process(Transform caster, Transform target) {
         casterStats = caster.GetComponent<CharacterStats>();
         targetStats = target.GetComponent<CharacterStats>();
-        targetStats.Heal(casterStats, valueOverTimeAmount);
+        targetStats.Heal(casterStats, valueOverTimeAmount, null);
     }
 
     public override void Cleanup(Transform target) {}

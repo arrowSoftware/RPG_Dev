@@ -15,13 +15,13 @@ public class Heal : Ability
 
         // If the target is an enemy then heal self, other wise heal the target.
         if (targetStats.enemy) {
-            casterStats.Heal(casterStats, 10);
+            casterStats.Heal(casterStats, 10, this);
             var effectable = caster.GetComponent<IEffectable>();
             if (effectable != null && statusEffect != null) {
                 effectable.ApplyEffect(casterStats, statusEffect);
             }
        } else {
-            targetStats.Heal(casterStats, 20);
+            targetStats.Heal(casterStats, 20, this);
             var effectable = target.GetComponent<IEffectable>();
             if (effectable != null && statusEffect != null) {
                 effectable.ApplyEffect(casterStats, statusEffect);

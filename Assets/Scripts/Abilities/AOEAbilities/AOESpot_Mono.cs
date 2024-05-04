@@ -90,12 +90,12 @@ public class AOESpot_Mono : MonoBehaviour
                         // If the caster is an enemy then apply the heals to all enemies
                         if (casterStats.enemy) {
                             if (stats.enemy) {
-                                stats.Heal(casterStats, valuePerTick);
+                                stats.Heal(casterStats, valuePerTick, ability);
                             }
                         } else {
                             // If the caster is a friendly, apply heals to all friendlies
                             if (!stats.enemy) {
-                                stats.Heal(casterStats, valuePerTick);                                
+                                stats.Heal(casterStats, valuePerTick, ability);                                
                             }
                         }
                         break;

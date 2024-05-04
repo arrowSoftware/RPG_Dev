@@ -4,6 +4,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
 
+[RequireComponent(typeof(EnemyCombat))]
 public class EnemyController : MonoBehaviour
 {
     // TODO fix speed, define speed variables faster when aggroed, slower when patrolling, fast af when resetting
@@ -30,7 +31,7 @@ public class EnemyController : MonoBehaviour
     Transform target;
     TargetSelection targetSelection;
     NavMeshAgent agent;
-    CharacterCombat combat;
+    EnemyCombat combat;
     CharacterStats stats;
 
     bool aggroed = false;
@@ -46,8 +47,8 @@ public class EnemyController : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         target = PlayerManager.instance.player.transform;
         aggroPoint = transform.position;
-        combat = GetComponent<CharacterCombat>();
-        stats = GetComponent<EnemyStats>();
+        combat = GetComponent<EnemyCombat>();
+        stats = GetComponent<CharacterStats>();
         abilityManager = GetComponent<AbilityManager>();
         if (TryGetComponent<TargetSelection>(out targetSelection)) {
             targetSelection.OnTargetSelected += OnTargetSelected;
@@ -138,11 +139,13 @@ public class EnemyController : MonoBehaviour
             agent.SetDestination(target.position);
             
             if (distance <= attackRange) {
+                combat.inCombat = true;
                 // attack
-                CharacterStats targetStats = target.GetComponent<CharacterStats>();
-                if (targetStats != null) {
-                    combat.Attack(target);
-                }
+                //CharacterStats targetStats = target.GetComponent<CharacterStats>();
+                //if (targetStats != null) {
+                //    combat.Attack(target);
+                //}
+
                 // face target
                 FaceTarget(target.position);
             }
@@ -155,6 +158,7 @@ public class EnemyController : MonoBehaviour
                 aggroed = false;
                 resetting = true;
                 stats.ResetHealth();
+                combat.inCombat = false;
                 stats.SetImmune(true);
             }
         }

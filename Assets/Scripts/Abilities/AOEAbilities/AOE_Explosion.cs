@@ -35,11 +35,11 @@ public class AOE_Explosion : Ability
                 if (heal) {
                     // If the caster is an enemy only heal enemies in the area
                     if (casterStats.enemy && stats.enemy) {
-                        stats.Heal(casterStats, 50);
+                        stats.Heal(casterStats, 50, this);
                     }
                     // if the caster is a friendly only heal friendlies in the area.
                     if (!casterStats.enemy && !stats.enemy) {
-                        stats.Heal(casterStats, 50);
+                        stats.Heal(casterStats, 50, this);
                     }
                 } else {
                     // If the caster is an enemy only damage friendlies in the area
