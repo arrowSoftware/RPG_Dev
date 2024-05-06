@@ -74,6 +74,9 @@ public class AbilityManager : MonoBehaviour
     private List<AbilityCoolDown> activeAbilities = new List<AbilityCoolDown>(10);
 
     // Sets the ability manager active ability list, called from the Game Manager.
+    public void SetActiveAbilities(Ability ability) {
+        activeAbilities.Add(new AbilityCoolDown(0.0f, false, ability));
+    }
     public void SetActiveAbilities(List<Ability> abilities) {
         // Add all the abilties to the active ability list.
         for (int i = 0; i < abilities.Count; i++) {

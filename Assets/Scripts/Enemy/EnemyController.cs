@@ -137,17 +137,11 @@ public class EnemyController : MonoBehaviour
         if (aggroed) {
             targetSelection.SetTarget(target);
             agent.SetDestination(target.position);
+            // face target
+            FaceTarget(target.position);
             
             if (distance <= attackRange) {
                 combat.inCombat = true;
-                // attack
-                //CharacterStats targetStats = target.GetComponent<CharacterStats>();
-                //if (targetStats != null) {
-                //    combat.Attack(target);
-                //}
-
-                // face target
-                FaceTarget(target.position);
             }
 
             // If the player dragged the enemy to far away, leash it back
@@ -166,9 +160,10 @@ public class EnemyController : MonoBehaviour
     }
 
     void FaceTarget(Vector3 target) {
-        Vector3 direction = (target - transform.position).normalized;
-        Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.x));
-        transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 1f);
+        Vector3 direction = target - transform.position;
+        direction.y = 0;
+        Quaternion lookRotation = Quaternion.LookRotation(direction);
+        transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 2.0f);
     }
 
     public void OnTargetSelected(Transform selection) {

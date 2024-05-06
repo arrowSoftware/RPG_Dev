@@ -8,7 +8,11 @@ public class HealthCombatCondition : CombatPhaseCondition
 {
     public int healthThreshold;
 
-    public override bool CheckCondition() {
-        return true;
+    public override bool CheckCondition(CharacterStats myStats) {
+        this.myStats = myStats;
+        if (myStats.currentHealth < healthThreshold) {
+            return true;
+        }
+        return false;
     }
 }

@@ -56,11 +56,15 @@ public class Melee : Ability
                         return true;                
                     }
                 } else {
-                    GameManager.instance.SetWarning(GameManager.NotificationWarning.InFrontOfTarget);
+                    if (!casterStats.enemy && !casterStats.npc) {
+                        GameManager.instance.SetWarning(GameManager.NotificationWarning.InFrontOfTarget);
+                    }
                     return false;
                 }
             } else {
-                GameManager.instance.SetWarning(GameManager.NotificationWarning.OutOfRange);
+                if (!casterStats.enemy && !casterStats.npc) {
+                    GameManager.instance.SetWarning(GameManager.NotificationWarning.OutOfRange);
+                }
                 return false;
             }
         }
