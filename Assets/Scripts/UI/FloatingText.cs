@@ -7,11 +7,11 @@ public class FloatingText : MonoBehaviour
 {
     // TODO https://www.youtube.com/watch?v=_ICCSDmLCX4 better way to do this without creting so many game objects
     public float destroyTime = 1.0f;
+
     public Vector3 offset = new Vector3(0, 0, 0);
     public Vector3 randomizeIntensity = new Vector3(0.0f, 0, 0);
-    private Animator anim;
 
-    float smoothSpeed = 2.0f;
+    float smoothSpeed = 4.0f;
     float targetSpeed = 0.0f;
     float speedRef = 0.0f;
 
@@ -52,7 +52,7 @@ public class FloatingText : MonoBehaviour
 
         Quaternion randAng = Quaternion.Euler(0, Random.Range(-45,45), 0);
         randAng = transform.rotation * randAng;
-        targetPoint = transform.position + randAng * Vector3.forward * 2;
+        targetPoint = transform.position + randAng * Vector3.forward * smoothSpeed;
         targetPoint.x = transform.position.x;
     }
 
@@ -62,4 +62,5 @@ public class FloatingText : MonoBehaviour
         transform.position = Vector3.MoveTowards(transform.position, targetPoint, step);
         transform.LookAt(Camera.main.transform, Vector3.up);
     }
+
 }

@@ -18,6 +18,17 @@
 
 # TODO
 Enemy hit boxes, instead of the center of them for the position, melee range on large mobs isnt working.
+Using projectors/decals as targeting/summoning circles https://www.youtube.com/watch?v=oZX5UAru3CY
+Spotlight selection circle https://www.youtube.com/watch?v=h-rTdArjyzU
+selection circle on tarrain with shader https://www.youtube.com/watch?v=a-J4ktx6y0Y
+
+Different style damage number https://www.google.com/search?client=firefox-b-1-d&sca_esv=b20e215ce61cde95&sca_upv=1&sxsrf=ADLYWIILxEeGuJoQSncg0HewkRoiz0D9XQ:1715016067053&q=unity+animated+floating+text+damage+number&tbm=vid&source=lnms&prmd=ivsnbmtz&sa=X&ved=2ahUKEwinwNfbxPmFAxUo4MkDHbfZDjEQ0pQJegQIDxAB&biw=1536&bih=703&dpr=1.25#fpstate=ive&vld=cid:4dcad031,vid:3eM-6qlwFuU,st:0
+or 
+https://www.youtube.com/watch?v=KOt85IoD__4
+
+AOE Circles, using brakckeys shield video with this https://www.youtube.com/watch?v=S4W-QBpQgiU
+render on both side and animate the edges. https://www.youtube.com/watch?v=tbySMSh6Ip0
+Combination fresnal and a spotlight/decal
 # Tasks:
 Nameplate:
 - [ ] Show nameplate when within x units of player

@@ -29,10 +29,10 @@ public class SoftwareCursor : MonoBehaviour
         float maxX = canvasRect.rect.size.x - (1 - target.pivot.x) * target.rect.size.x;
         float minY = target.pivot.y * target.rect.size.y;
         float maxY = canvasRect.rect.size.y - (1 - target.pivot.y) * target.rect.size.y;
-       
+
         screenPos.x = Mathf.Clamp(screenPos.x, minX, maxX);
         screenPos.y = Mathf.Clamp(screenPos.y, minY, maxY);
- 
+
         RectTransformUtility.ScreenPointToLocalPointInRectangle(parentRect, screenPos, cam, out Vector2 anchoredPos);
         target.localPosition = anchoredPos;
     }

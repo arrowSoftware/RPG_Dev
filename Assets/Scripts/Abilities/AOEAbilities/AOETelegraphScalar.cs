@@ -24,10 +24,13 @@ public class AOETelegraphScalar : MonoBehaviour
     }
     public AOESpotShape spotShape;
 
-    void Start() {
+    public void Begin(float fillTime) {
+        timeToFill = fillTime;
         initialScale = innerScalarSection.localScale;
         coroutine = StartCoroutine(ScaleOverTime(innerScalarSection, outerSection.localScale, timeToFill));
     }
+
+    void Start() {}
 
     void Update() {
         if (looping && isScaling == false) {
@@ -38,6 +41,9 @@ public class AOETelegraphScalar : MonoBehaviour
         // TODO better boolean for this, not all scalars use the y direction
         if (innerScalarSection.localScale.y >= outerSection.localScale.y) {
             CheckForContacts();
+            if (!looping) {
+                Destroy(gameObject);
+            }
         }
         
     }
