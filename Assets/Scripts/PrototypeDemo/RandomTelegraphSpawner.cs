@@ -7,6 +7,7 @@ public class RandomTelegraphSpawner : MonoBehaviour
     public float spawnInterval;
     public float spawnedItemLifetime;
     public List<GameObject> telegraphPrefabs = new List<GameObject>();
+    public CharacterStats myStats;
 
     Vector3 spawnArea;
     float currentTime = 0;
@@ -27,7 +28,7 @@ public class RandomTelegraphSpawner : MonoBehaviour
             telegraph.transform.localPosition = randomSpawnPosition;
             telegraph.transform.rotation = Quaternion.Euler(randomRotation);
             //telegraph.name = "Floor_" + z + x ;
-            telegraph.GetComponent<AOETelegraphScalar>().Begin(spawnedItemLifetime);
+            telegraph.GetComponent<AOETelegraphScalar>().Begin(myStats, spawnedItemLifetime, ScriptableObject.CreateInstance<AOETelegraph>());
             currentTime = 0;
         }
     }

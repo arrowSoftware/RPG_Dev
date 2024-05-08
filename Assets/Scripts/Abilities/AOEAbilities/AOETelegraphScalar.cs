@@ -16,7 +16,8 @@ public class AOETelegraphScalar : MonoBehaviour
     Coroutine coroutine;
     Vector3 initialScale;
     List<Collider> currentCollisions = new List<Collider>();
-
+    Ability ability;
+    
     public enum AOESpotShape {
         AOECircle,
         AOEBox,
@@ -24,7 +25,9 @@ public class AOETelegraphScalar : MonoBehaviour
     }
     public AOESpotShape spotShape;
 
-    public void Begin(float fillTime) {
+    public void Begin(CharacterStats casterStats, float fillTime, Ability ability) {
+        this.casterStats = casterStats;
+        this.ability = ability;
         timeToFill = fillTime;
         initialScale = innerScalarSection.localScale;
         coroutine = StartCoroutine(ScaleOverTime(innerScalarSection, outerSection.localScale, timeToFill));
@@ -87,8 +90,10 @@ public class AOETelegraphScalar : MonoBehaviour
         List<Collider> colliders = GetCurrentColliders();
 
         foreach (Collider collider in colliders) {
-            if (collider.GetComponent<CharacterStats>()) {
-                collider.GetComponent<CharacterStats>().TakeDamage(null, damageValue, null);
+            if (collider.TryGetComponent<CharacterStats>(out CharacterStats stats)) {
+                if ((!casterStats.enemy && stats.enemy) || (casterStats.enemy && !stats.enemy)) {
+                    stats.TakeDamage(casterStats, damageValue, ScriptableObject.CreateInstance<Ability>());
+                }
             }
         }
         colliders.Clear();
