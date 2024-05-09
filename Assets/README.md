@@ -17,6 +17,8 @@
 // https://forum.unity.com/threads/a-comprehensive-guide-to-the-execution-order-of-unity-event-functions.1381647/
 
 # TODO
+Status effects applied by enemy to player are not working. no damage is happening but the icon is there
+
 Enemy hit boxes, instead of the center of them for the position, melee range on large mobs isnt working.
 Using projectors/decals as targeting/summoning circles https://www.youtube.com/watch?v=oZX5UAru3CY
 Spotlight selection circle https://www.youtube.com/watch?v=h-rTdArjyzU
