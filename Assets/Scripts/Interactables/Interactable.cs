@@ -5,7 +5,6 @@ public class Interactable : MonoBehaviour
 {
     public float radius = 3.0f; // distance to get to object to interact.
     bool isFocus = false;
-//    [HideInInspector]
     public Transform player;
     bool hasInteracted = false;
     public Transform interactionTransform;
@@ -15,7 +14,7 @@ public class Interactable : MonoBehaviour
     }
 
     private void Update() {
-        return;
+        return; // TODO not needed
         if (isFocus && !hasInteracted) {
             float distance = Vector3.Distance(player.position, interactionTransform.position);
             Debug.Log(distance);
@@ -31,7 +30,6 @@ public class Interactable : MonoBehaviour
         player = playerTransform;
         hasInteracted = false;
         float distance = Vector3.Distance(player.position, interactionTransform.position);
-        Debug.Log(distance);
         if (distance <= radius) {
             Interact();
         } else {
