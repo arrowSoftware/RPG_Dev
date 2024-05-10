@@ -10,6 +10,13 @@ public class CastBarUI : MonoBehaviour
     float castBarCurrentTime = 0;
     bool startCast = false;
 
+#region Singleton
+    public static CastBarUI instance;
+    private void Awake() {
+        instance = this;
+    }
+#endregion
+
     public void StartCastbar(float maxTime) {
         castBarMaxTime = maxTime;
         castBarSliderUI.value = 0;

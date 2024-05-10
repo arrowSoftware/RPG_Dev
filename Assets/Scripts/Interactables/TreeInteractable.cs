@@ -10,45 +10,59 @@ public class TreeInteractable : Interactable
     readonly float trunkHideTime = 5;
     Vector3 trunkStartPosition;
     Quaternion trunkStartRotation;
+    bool chopping = false;
 
     public Transform forcePoint;
     public GameObject trunk;
     public float respawnTimer;
+    CastBarUI castbar;
 
     private void Start() {
         trunkStartPosition = trunk.transform.position;
         trunkStartRotation = trunk.transform.rotation;
+        castbar = CastBarUI.instance;
     }
 
     public override void Interact() {
+        Debug.Log("Interacting with tree" + name);
+
         if (!treeFelled) {
             // TODO
             // Player look at the tree
             // Start a cast bar and when the cast bar finishes then perform the below code
+            if (!chopping) {
+                StartCoroutine(BeginChop(3.0f)); // Temp 3.0f
+            }
             // When the tree has the force applied award xp and woods
             // If the player moves or hits escape, cancel the cast bar.
             // Cast bar duration is based on tree level, player logging level, axe quality.
             // Awarded xp and woods is based on tree level.
-
-            // Get the rigid body from the trunk
-            trunkRigidBody = transform.GetComponentInChildren<Rigidbody>();
-            trunkRigidBody.isKinematic = false;
-            // Enable the collider of the trunk
-            trunk.GetComponent<Collider>().enabled = true;
-            // Enable the gravity so it will fall.
-            trunkRigidBody.useGravity = true;
-            // Apply a random force so it will start falling.
-            trunkRigidBody.AddForceAtPosition(new Vector3(Random.Range(-5, 6), 0, Random.Range(-5, 6)), forcePoint.position);
-            // Disable the parent tree object collider, so we dont get more click events.
-            transform.GetComponent<Collider>().enabled = false;
-            // set the tree felled boolean.
-            treeFelled = true;
-            // Start the hide trunk coroutube.
-            StartCoroutine(HideTreeTrunk());
-            // Start the respawn timer coroutine.
-            StartCoroutine(RespawnTree());
-            Debug.Log("Interacting with tree" + name);
         }
+    }
+
+    private IEnumerator BeginChop(float castTime) {
+        chopping = true;
+        if (castbar) {
+            castbar.StartCastbar(castTime);
+        }
+        yield return new WaitForSeconds(castTime);
+        // Get the rigid body from the trunk
+        trunkRigidBody = transform.GetComponentInChildren<Rigidbody>();
+        trunkRigidBody.isKinematic = false;
+        // Enable the collider of the trunk
+        trunk.GetComponent<Collider>().enabled = true;
+        // Enable the gravity so it will fall.
+        trunkRigidBody.useGravity = true;
+        // Apply a random force so it will start falling.
+        trunkRigidBody.AddForceAtPosition(new Vector3(2, 0, 2), forcePoint.position); // TODO random direction not 2
+        // Disable the parent tree object collider, so we dont get more click events.
+        transform.GetComponent<Collider>().enabled = false;
+        // set the tree felled boolean.
+        treeFelled = true;
+        // Start the hide trunk coroutube.
+        StartCoroutine(HideTreeTrunk());
+        // Start the respawn timer coroutine.
+        StartCoroutine(RespawnTree());
     }
 
     private IEnumerator RespawnTree() {
@@ -61,6 +75,7 @@ public class TreeInteractable : Interactable
         transform.GetComponent<Collider>().enabled = true;
         trunkRigidBody.isKinematic = true;
         treeFelled = false;
+        chopping = false;
     }
 
     private IEnumerator HideTreeTrunk() {

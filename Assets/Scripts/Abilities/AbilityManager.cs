@@ -18,7 +18,7 @@ public class AbilityManager : MonoBehaviour
     Transform tempPlacedTransform;
 
     // Castbar reference
-    public CastBarUI castbar;
+    CastBarUI castbar;
 
     // Casted ability co routine
     Coroutine castedAbilityCR;
@@ -140,6 +140,7 @@ public class AbilityManager : MonoBehaviour
     }
 
     void Start() {
+        castbar = CastBarUI.instance;
         // If there is a target selection script on this object then attach
         // the callback function.
         if (TryGetComponent<TargetSelection>(out targetSelection)) {
