@@ -17,6 +17,8 @@
 // https://forum.unity.com/threads/a-comprehensive-guide-to-the-execution-order-of-unity-event-functions.1381647/
 
 # TODO
+able to pick 2 plants/trees at a time becuase there is no stop cast yet.
+
 Status effects applied by enemy to player are not working. no damage is happening but the icon is there
 
 Enemy hit boxes, instead of the center of them for the position, melee range on large mobs isnt working.

@@ -11,7 +11,6 @@ public class ActionBar : MonoBehaviour
     AbilityManager abilityManager;
     private List<ControlBinding> actionBarSlots = new List<ControlBinding>(10);
     public List<Ability> activeAbilities = new List<Ability>(10);
-    public ActionBarUI actionBarUIScript;
     public Transform actionBarUI;
 
     public event System.Action<List<ControlBinding>, List<Ability> > OnActionBarChanged;

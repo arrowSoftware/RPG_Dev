@@ -27,7 +27,7 @@ public class ActionBarUI : MonoBehaviour
         return keyCode.ToString();
     }
 
-    void Start() {
+    void Awake() {
         // TODO this start is happening before the actionbar class.
         actionBar.OnActionBarChanged += OnActionBarChanged;
     }
