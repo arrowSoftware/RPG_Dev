@@ -1083,7 +1083,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 1728
+  m_VersionIndex: 1734
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -1217,6 +1217,7 @@ MonoBehaviour:
   interactionTransform: {fileID: 4576826246455526485}
   node: {fileID: 4576826245489571263}
   respawnTimer: 3
+  experienceGainAmount: 2
 --- !u!1 &4576826246455526486
 GameObject:
   m_ObjectHideFlags: 0

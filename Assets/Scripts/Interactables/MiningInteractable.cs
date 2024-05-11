@@ -10,6 +10,7 @@ public class MiningInteractable : Interactable
     
     public GameObject node;
     public float respawnTimer;
+    public int experienceGainAmount = 1;
 
     private void Start() {
         castbar = CastBarUI.instance;
@@ -37,6 +38,9 @@ public class MiningInteractable : Interactable
             castbar.StartCastbar(castTime);
         }
         yield return new WaitForSeconds(castTime);
+        // Award experience to the player
+        player.GetComponent<PlayerSkills>().AddExperience(Skill.SkillType.Mining, experienceGainAmount);
+
         // Disable the parent object collider, so we dont get more click events.
         transform.GetComponent<Collider>().enabled = false;
         // set the picked boolean.
@@ -44,6 +48,7 @@ public class MiningInteractable : Interactable
         // Disable the node
         node.SetActive(false);
         OnDefocused();
+
 
         // Start the respawn timer coroutine.
         StartCoroutine(RespawnNode());

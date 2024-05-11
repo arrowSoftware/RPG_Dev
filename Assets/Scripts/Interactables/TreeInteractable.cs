@@ -15,6 +15,7 @@ public class TreeInteractable : Interactable
     public Transform forcePoint;
     public GameObject trunk;
     public float respawnTimer;
+    public int experienceGainAmount = 1;
     CastBarUI castbar;
 
     private void Start() {
@@ -46,6 +47,8 @@ public class TreeInteractable : Interactable
             castbar.StartCastbar(castTime);
         }
         yield return new WaitForSeconds(castTime);
+        // Award experience to the player
+        player.GetComponent<PlayerSkills>().AddExperience(Skill.SkillType.Logging, experienceGainAmount);
         // Get the rigid body from the trunk
         trunkRigidBody = transform.GetComponentInChildren<Rigidbody>();
         trunkRigidBody.isKinematic = false;

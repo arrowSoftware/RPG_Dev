@@ -29,6 +29,11 @@ public class GameManager : MonoBehaviour
         InvalidTarget
     }
 
+    public void SendExperienceGainMessage(int amount) {
+        string text =  "<color=blue>" + amount + " experience gained</color>";
+        SendChatMessage(text);
+    }
+
     public void SendDamageMessage(string caster, Ability ability, string target, float damage, bool crit) {
         string damageText = "";
         if (crit) {
