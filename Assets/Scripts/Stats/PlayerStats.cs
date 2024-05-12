@@ -9,7 +9,7 @@ public class PlayerStats : CharacterStats
     {
         //EquipmentManager.instance.onEquipmentChanged += onEquipmentChanged;
     }
-
+/*
     void onEquipmentChanged(Equipment newItem, Equipment oldItem) {
         if (newItem != null) {
             armor.AddModifier(newItem.armorModifier);
@@ -21,7 +21,7 @@ public class PlayerStats : CharacterStats
             physicalDamage.AddModifier(oldItem.damageModifier);
         }
     }
-
+*/
     public override void Die()
     {
         base.Die();

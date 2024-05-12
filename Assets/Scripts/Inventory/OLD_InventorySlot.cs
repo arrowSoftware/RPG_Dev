@@ -1,7 +1,8 @@
+/*
 using UnityEngine;
 using UnityEngine.UI;
 
-public class InventorySlot : MonoBehaviour
+public class OLD_InventorySlot : MonoBehaviour
 {
     Item item;
     public Image icon;
@@ -31,3 +32,4 @@ public class InventorySlot : MonoBehaviour
         }
     }
 }
+*/
