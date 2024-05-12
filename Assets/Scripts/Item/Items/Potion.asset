@@ -10,11 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5099197cfc9de514dbd6fde38152d929, type: 3}
-  m_Name: Helmet
+  m_Name: Potion
   m_EditorClassIdentifier: 
-  name: Helmet
-  icon: {fileID: 21300000, guid: 955a3e267207b8046b54bbfdfb90b1bf, type: 3}
-  itemType: 1
-  isStackable: 0
-  maxStackSize: 1
+  name: Potion
+  icon: {fileID: 21300000, guid: 16c179d2d80b4e84197939770ac4cbb4, type: 3}
+  itemType: 21
+  isStackable: 1
   equipmentPrefab: {fileID: 0}

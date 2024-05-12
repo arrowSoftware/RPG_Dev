@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class CameraController : MonoBehaviour
 {
@@ -108,8 +109,22 @@ public class CameraController : MonoBehaviour
         swCursor.SetCursorPosition(new Vector3(x, y, 0));
     }
 
+public static bool IsPointerOverUIObject()
+{
+    // Apparently this is slow, use the event system one isntead.
+    PointerEventData eventDataCurrentPosition = new PointerEventData(EventSystem.current);
+    eventDataCurrentPosition.position = new Vector2(SoftwareCursor.instance.GetCursorPosition().x, SoftwareCursor.instance.GetCursorPosition().y);
+    List<RaycastResult> results = new List<RaycastResult>();
+    EventSystem.current.RaycastAll(eventDataCurrentPosition, results);
+    return results.Count > 0;
+}
+
     void Update()
     {
+        if (IsPointerOverUIObject()) {
+            return;
+        }
+
         // No mouse button
         if (!swCursor.GetKey(leftMouse) && !swCursor.GetKey(rightMouse) && !swCursor.GetKey(middleMouse)) {
             cameraState = CameraState.CameraNone;
