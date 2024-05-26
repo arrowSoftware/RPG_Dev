@@ -33,6 +33,10 @@ https://www.youtube.com/watch?v=KOt85IoD__4
 AOE Circles, using brakckeys shield video with this https://www.youtube.com/watch?v=S4W-QBpQgiU
 render on both side and animate the edges. https://www.youtube.com/watch?v=tbySMSh6Ip0
 Combination fresnal and a spotlight/decal
+
+Tooltips, script added to things with tooltips, on the mouse targeting hover code, will check for tooltip, if tooltip then display, if hover removed, hide tooltip
+
+Fix all the mining nodes to child the model to the "model" object and set "model" to the "model" field of the scipt, so i dont have to do that update thing each time.  Also check if tree needs it as well.
 # Tasks:
 Nameplate:
 - [ ] Show nameplate when within x units of player
