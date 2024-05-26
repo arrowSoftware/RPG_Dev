@@ -8,10 +8,19 @@ using UnityEngine.UI;
 // https://www.google.com/search?client=firefox-b-1-d&q=unity+inventory#fpstate=ive&vld=cid:e70e38e0,vid:oJAE6CbsQQA,st:0
 
 public class InventoryManager : MonoBehaviour {
+    public static InventoryManager Instance { get; private set;}
+    private void Awake() {
+        Instance = this;    
+    }
+
     public InventorySlot[] inventorySlots;
     public GameObject inventoryItemPrefab;
 
     public bool AddItem(Item newItem) {
+        if (newItem == null) {
+            return false;
+        }
+
         // Check if any slot has the same item with a count less than max.
         for (int i = 0; i < inventorySlots.Length; i++) {
             InventorySlot slot = inventorySlots[i];

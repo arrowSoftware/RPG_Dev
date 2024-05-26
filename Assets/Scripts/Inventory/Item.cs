@@ -8,9 +8,14 @@ public enum ItemType {
     Item
 }
 
+public enum ItemQuality {
+    Poor, Common, Uncommon, Rare, Epic, Legendary, Artifact
+}
+
 [CreateAssetMenu(fileName = "New Item", menuName = "Inventory/Item")]
 public class Item : ScriptableObject {
     new public string name = "New Item";
+    public ItemQuality quality;
     public Sprite icon = null;
     public ItemType itemType;
     public bool isStackable;

@@ -12,7 +12,7 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     public TMP_Text countText;
 
     [HideInInspector] public Transform parentAfterDrag;
-    [HideInInspector] public Item item;
+    public Item item;
     [HideInInspector] public int count = 1;
     
     public void InitializeItem(Item newItem) {
@@ -29,6 +29,10 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 
     public void OnBeginDrag(PointerEventData eventData) {
         Debug.Log("Begin Drag");
+        // If the previous parent was an equipment slot then turn on the placeholder.
+        if (transform.parent.TryGetComponent<EquipmentSlot>(out EquipmentSlot slot)) {
+            slot.SetPlaceholder(true);
+        }
         image.raycastTarget = false;
         parentAfterDrag = transform.parent;
         transform.SetParent(transform.root);
@@ -43,5 +47,9 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         Debug.Log("End Drag");
         image.raycastTarget = true;
         transform.SetParent(parentAfterDrag);
+        // If the drag ended and the item is going back to an equipment slot, turn off the palceholder
+        if (transform.parent.TryGetComponent<EquipmentSlot>(out EquipmentSlot slot)) {
+            slot.SetPlaceholder(false);
+        }
     }
 }

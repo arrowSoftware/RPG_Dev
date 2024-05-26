@@ -15,7 +15,7 @@ MonoBehaviour:
   name: TestAxe
   quality: 2
   icon: {fileID: 21300000, guid: c640557738555c34489ac499f09570a6, type: 3}
-  itemType: 0
+  itemType: 10
   isStackable: 0
   maxStackSize: 5
   equipmentPrefab: {fileID: 0}

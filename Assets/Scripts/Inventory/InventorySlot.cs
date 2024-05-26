@@ -3,12 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public enum SlotTag {
-    None, Head, Neck, Shoulder, Chest, Wrist, Gloves, Waist, Legs, Feet,
-    MainHand, OffHand, Ranged, Ammo,
-    Ring, Trinket, PickaxeTool, AxeTool, SickleTool, KnifeTool, FishingTool
-}
-
 public class InventorySlot : MonoBehaviour, IDropHandler
 {
     public void OnDrop(PointerEventData eventData)

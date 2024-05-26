@@ -16,6 +16,7 @@ public class TreeInteractable : Interactable
     public GameObject trunk;
     public float respawnTimer;
     public int experienceGainAmount = 1;
+    public float chopTime = 3.0f;
     CastBarUI castbar;
 
     private void Start() {
@@ -32,7 +33,7 @@ public class TreeInteractable : Interactable
             // Player look at the tree
             // Start a cast bar and when the cast bar finishes then perform the below code
             if (!chopping) {
-                StartCoroutine(BeginChop(3.0f)); // Temp 3.0f
+                StartCoroutine(BeginChop(chopTime)); // Temp 3.0f
             }
             // When the tree has the force applied award xp and woods
             // If the player moves or hits escape, cancel the cast bar.
