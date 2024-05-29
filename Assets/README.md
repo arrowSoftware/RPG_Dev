@@ -37,6 +37,8 @@ Combination fresnal and a spotlight/decal
 Tooltips, script added to things with tooltips, on the mouse targeting hover code, will check for tooltip, if tooltip then display, if hover removed, hide tooltip
 
 Fix all the mining nodes to child the model to the "model" object and set "model" to the "model" field of the scipt, so i dont have to do that update thing each time.  Also check if tree needs it as well.
+
+Dungeon spawner, change to wave form collapse
 # Tasks:
 Nameplate:
 - [ ] Show nameplate when within x units of player
