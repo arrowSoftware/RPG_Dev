@@ -247,7 +247,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 374
+  m_VersionIndex: 389
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -563,7 +563,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 1166
+  m_VersionIndex: 1181
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -879,7 +879,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 898
+  m_VersionIndex: 913
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -961,7 +961,7 @@ GameObject:
   - component: {fileID: 208227328733387246}
   - component: {fileID: 4477234127073399212}
   m_Layer: 0
-  m_Name: DungeonRoom_SE
+  m_Name: DungeonRoom_TwoDoorCorner
   m_TagString: DungeonRoom
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1029,7 +1029,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   possibleRooms:
+  - {fileID: 5061696530226052356, guid: d49fd18400f3b6149b1c1e2a95b08151, type: 3}
+  - {fileID: 208227328733387244}
+  - {fileID: 5711877688980548354, guid: a35a145babd86704cb6eac74fa1dc5b1, type: 3}
+  - {fileID: 2617051339730197633, guid: a3e181e34b59f23458a06d96b5cdf30d, type: 3}
+  - {fileID: 4292108723011886437, guid: 2cb69e9963d870d43a2e6c73b64ed13a, type: 3}
+  - {fileID: 1180106843679749969, guid: a690500185b93dd43ad5eb4a9a61a1fa, type: 3}
+  - {fileID: 8834034701740372959, guid: 431088fb9d03a7f4fabf297eff959fc0, type: 3}
   - {fileID: 3287911204644182922, guid: 67a9c3f35b24e574a932ea6ef2892473, type: 3}
+  - {fileID: 6664341835817045554, guid: 299f77534efd52d45bc497403df39ab5, type: 3}
   openingLocations:
   - {fileID: 2506726653304370342}
   - {fileID: 4141365605827687154}
@@ -1391,7 +1399,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 556
+  m_VersionIndex: 571
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -1707,7 +1715,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 870
+  m_VersionIndex: 885
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -2100,7 +2108,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 550
+  m_VersionIndex: 565
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -2450,7 +2458,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 550
+  m_VersionIndex: 565
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []

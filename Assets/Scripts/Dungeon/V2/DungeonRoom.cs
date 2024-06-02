@@ -40,5 +40,6 @@ public class DungeonRoom : MonoBehaviour
         // Wait until all adjacent chambers are spawned and are in a valid state
         // TODO 
         // Notify dungeon new rooms are ready
+        // TODO if opening collides with a something thats not an opening, try a new piece, if ll peices have been tried, clsoe the door
     }
 }
