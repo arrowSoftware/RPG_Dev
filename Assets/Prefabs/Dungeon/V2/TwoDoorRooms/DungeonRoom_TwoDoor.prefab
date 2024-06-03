@@ -84,7 +84,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 20, y: 4, z: 20}
+  m_Size: {x: 19.5, y: 4, z: 19.5}
   m_Center: {x: 0, y: 2, z: 10}
 --- !u!54 &5061696530226052358
 Rigidbody:
@@ -114,19 +114,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c5e6cc16b697a24286303dbf788fb5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  possibleRooms:
-  - {fileID: 6664341835817045554, guid: 299f77534efd52d45bc497403df39ab5, type: 3}
-  - {fileID: 8834034701740372959, guid: 431088fb9d03a7f4fabf297eff959fc0, type: 3}
-  - {fileID: 3287911204644182922, guid: 67a9c3f35b24e574a932ea6ef2892473, type: 3}
-  - {fileID: 1180106843679749969, guid: a690500185b93dd43ad5eb4a9a61a1fa, type: 3}
-  - {fileID: 5711877688980548354, guid: a35a145babd86704cb6eac74fa1dc5b1, type: 3}
-  - {fileID: 2617051339730197633, guid: a3e181e34b59f23458a06d96b5cdf30d, type: 3}
-  - {fileID: 4292108723011886437, guid: 2cb69e9963d870d43a2e6c73b64ed13a, type: 3}
-  - {fileID: 5061696530226052356}
-  - {fileID: 208227328733387244, guid: 0f7ff38d65a6f6946b781cddfe9acb24, type: 3}
+  possibleRooms: []
   openingLocations:
   - {fileID: 3655836558334674820}
   - {fileID: 9053380497488270874}
+  isValid: 1
 --- !u!1 &5061696530550554598
 GameObject:
   m_ObjectHideFlags: 0
@@ -770,7 +762,7 @@ GameObject:
   - component: {fileID: 5061696530757120751}
   - component: {fileID: 3655836558334674820}
   - component: {fileID: 7546133886377625103}
-  - component: {fileID: 8197084411260279488}
+  - component: {fileID: 2573675190309711741}
   m_Layer: 0
   m_Name: Opening
   m_TagString: Untagged
@@ -805,8 +797,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f39f353edb489f24e8f0f792c4431c01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  possibleRooms:
+  - {fileID: 6664341835817045554, guid: 299f77534efd52d45bc497403df39ab5, type: 3}
+  - {fileID: 8834034701740372959, guid: 431088fb9d03a7f4fabf297eff959fc0, type: 3}
+  - {fileID: 3287911204644182922, guid: 67a9c3f35b24e574a932ea6ef2892473, type: 3}
+  - {fileID: 1180106843679749969, guid: a690500185b93dd43ad5eb4a9a61a1fa, type: 3}
+  - {fileID: 5711877688980548354, guid: a35a145babd86704cb6eac74fa1dc5b1, type: 3}
+  - {fileID: 2617051339730197633, guid: a3e181e34b59f23458a06d96b5cdf30d, type: 3}
+  - {fileID: 4292108723011886437, guid: 2cb69e9963d870d43a2e6c73b64ed13a, type: 3}
+  - {fileID: 5061696530226052356}
+  - {fileID: 208227328733387244, guid: 0f7ff38d65a6f6946b781cddfe9acb24, type: 3}
   isConnected: 0
   connectedRoom: {fileID: 0}
+  collidedWithOpening: 0
+  openingDoorPrefab: {fileID: 4760678051571106232, guid: e6de9985ce570db4e89cc5a6d4ea9d7d, type: 3}
+  validOpening: 0
 --- !u!65 &7546133886377625103
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -819,8 +824,8 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!54 &8197084411260279488
+  m_Center: {x: 0, y: -1.5, z: 0}
+--- !u!54 &2573675190309711741
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2460,8 +2465,8 @@ GameObject:
   m_Component:
   - component: {fileID: 9053380497488270875}
   - component: {fileID: 9053380497488270874}
-  - component: {fileID: 8442940166481378309}
   - component: {fileID: 2846679575247137023}
+  - component: {fileID: 7587048313171720541}
   m_Layer: 0
   m_Name: Opening
   m_TagString: Untagged
@@ -2496,9 +2501,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f39f353edb489f24e8f0f792c4431c01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  possibleRooms:
+  - {fileID: 6664341835817045554, guid: 299f77534efd52d45bc497403df39ab5, type: 3}
+  - {fileID: 8834034701740372959, guid: 431088fb9d03a7f4fabf297eff959fc0, type: 3}
+  - {fileID: 3287911204644182922, guid: 67a9c3f35b24e574a932ea6ef2892473, type: 3}
+  - {fileID: 1180106843679749969, guid: a690500185b93dd43ad5eb4a9a61a1fa, type: 3}
+  - {fileID: 5711877688980548354, guid: a35a145babd86704cb6eac74fa1dc5b1, type: 3}
+  - {fileID: 2617051339730197633, guid: a3e181e34b59f23458a06d96b5cdf30d, type: 3}
+  - {fileID: 4292108723011886437, guid: 2cb69e9963d870d43a2e6c73b64ed13a, type: 3}
+  - {fileID: 5061696530226052356}
+  - {fileID: 208227328733387244, guid: 0f7ff38d65a6f6946b781cddfe9acb24, type: 3}
   isConnected: 0
   connectedRoom: {fileID: 0}
---- !u!54 &8442940166481378309
+  collidedWithOpening: 0
+  openingDoorPrefab: {fileID: 4760678051571106232, guid: e6de9985ce570db4e89cc5a6d4ea9d7d, type: 3}
+  validOpening: 0
+--- !u!65 &2846679575247137023
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9053380497488270868}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: -1.5, z: 0}
+--- !u!54 &7587048313171720541
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2514,16 +2545,3 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!65 &2846679575247137023
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9053380497488270868}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}

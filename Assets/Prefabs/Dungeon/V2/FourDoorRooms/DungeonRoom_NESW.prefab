@@ -10,11 +10,11 @@ GameObject:
   m_Component:
   - component: {fileID: 1822657249892023753}
   - component: {fileID: 1822657249892023756}
-  - component: {fileID: 1822657249892023759}
   - component: {fileID: 1822657249892023758}
+  - component: {fileID: 5297728279664496484}
   m_Layer: 0
   m_Name: Opening
-  m_TagString: Untagged
+  m_TagString: DungeonOpening
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -46,9 +46,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f39f353edb489f24e8f0f792c4431c01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  possibleRooms:
+  - {fileID: 6664341835817045554}
+  - {fileID: 8834034701740372959, guid: 431088fb9d03a7f4fabf297eff959fc0, type: 3}
+  - {fileID: 3287911204644182922, guid: 67a9c3f35b24e574a932ea6ef2892473, type: 3}
+  - {fileID: 1180106843679749969, guid: a690500185b93dd43ad5eb4a9a61a1fa, type: 3}
+  - {fileID: 5711877688980548354, guid: a35a145babd86704cb6eac74fa1dc5b1, type: 3}
+  - {fileID: 2617051339730197633, guid: a3e181e34b59f23458a06d96b5cdf30d, type: 3}
+  - {fileID: 4292108723011886437, guid: 2cb69e9963d870d43a2e6c73b64ed13a, type: 3}
+  - {fileID: 5061696530226052356, guid: d49fd18400f3b6149b1c1e2a95b08151, type: 3}
+  - {fileID: 208227328733387244, guid: 0f7ff38d65a6f6946b781cddfe9acb24, type: 3}
   isConnected: 0
   connectedRoom: {fileID: 0}
---- !u!54 &1822657249892023759
+  collidedWithOpening: 0
+  openingDoorPrefab: {fileID: 4760678051571106232, guid: e6de9985ce570db4e89cc5a6d4ea9d7d, type: 3}
+  validOpening: 0
+--- !u!65 &1822657249892023758
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1822657249892023752}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: -1, z: 0}
+--- !u!54 &5297728279664496484
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -64,19 +90,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!65 &1822657249892023758
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1822657249892023752}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1822657250441838215
 GameObject:
   m_ObjectHideFlags: 0
@@ -1103,11 +1116,11 @@ GameObject:
   m_Component:
   - component: {fileID: 2444253990562985714}
   - component: {fileID: 2444253990562985713}
-  - component: {fileID: 2444253990562985712}
   - component: {fileID: 2444253990562985715}
+  - component: {fileID: 5844971222529444157}
   m_Layer: 0
   m_Name: Opening
-  m_TagString: Untagged
+  m_TagString: DungeonOpening
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1139,9 +1152,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f39f353edb489f24e8f0f792c4431c01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  possibleRooms:
+  - {fileID: 6664341835817045554}
+  - {fileID: 8834034701740372959, guid: 431088fb9d03a7f4fabf297eff959fc0, type: 3}
+  - {fileID: 3287911204644182922, guid: 67a9c3f35b24e574a932ea6ef2892473, type: 3}
+  - {fileID: 1180106843679749969, guid: a690500185b93dd43ad5eb4a9a61a1fa, type: 3}
+  - {fileID: 5711877688980548354, guid: a35a145babd86704cb6eac74fa1dc5b1, type: 3}
+  - {fileID: 2617051339730197633, guid: a3e181e34b59f23458a06d96b5cdf30d, type: 3}
+  - {fileID: 4292108723011886437, guid: 2cb69e9963d870d43a2e6c73b64ed13a, type: 3}
+  - {fileID: 5061696530226052356, guid: d49fd18400f3b6149b1c1e2a95b08151, type: 3}
+  - {fileID: 208227328733387244, guid: 0f7ff38d65a6f6946b781cddfe9acb24, type: 3}
   isConnected: 0
   connectedRoom: {fileID: 0}
---- !u!54 &2444253990562985712
+  collidedWithOpening: 0
+  openingDoorPrefab: {fileID: 4760678051571106232, guid: e6de9985ce570db4e89cc5a6d4ea9d7d, type: 3}
+  validOpening: 0
+--- !u!65 &2444253990562985715
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2444253990562985717}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: -1, z: 0}
+--- !u!54 &5844971222529444157
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1157,19 +1196,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!65 &2444253990562985715
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2444253990562985717}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &2444253990894363516
 GameObject:
   m_ObjectHideFlags: 0
@@ -1813,10 +1839,10 @@ GameObject:
   - component: {fileID: 6664341835282891225}
   - component: {fileID: 2953972406759847090}
   - component: {fileID: 8285494613738173753}
-  - component: {fileID: 7747134111820196342}
+  - component: {fileID: 193683647498760157}
   m_Layer: 0
   m_Name: Opening
-  m_TagString: Untagged
+  m_TagString: DungeonOpening
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1848,8 +1874,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f39f353edb489f24e8f0f792c4431c01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  possibleRooms:
+  - {fileID: 6664341835817045554}
+  - {fileID: 8834034701740372959, guid: 431088fb9d03a7f4fabf297eff959fc0, type: 3}
+  - {fileID: 3287911204644182922, guid: 67a9c3f35b24e574a932ea6ef2892473, type: 3}
+  - {fileID: 1180106843679749969, guid: a690500185b93dd43ad5eb4a9a61a1fa, type: 3}
+  - {fileID: 5711877688980548354, guid: a35a145babd86704cb6eac74fa1dc5b1, type: 3}
+  - {fileID: 2617051339730197633, guid: a3e181e34b59f23458a06d96b5cdf30d, type: 3}
+  - {fileID: 4292108723011886437, guid: 2cb69e9963d870d43a2e6c73b64ed13a, type: 3}
+  - {fileID: 5061696530226052356, guid: d49fd18400f3b6149b1c1e2a95b08151, type: 3}
+  - {fileID: 208227328733387244, guid: 0f7ff38d65a6f6946b781cddfe9acb24, type: 3}
   isConnected: 0
   connectedRoom: {fileID: 0}
+  collidedWithOpening: 0
+  openingDoorPrefab: {fileID: 4760678051571106232, guid: e6de9985ce570db4e89cc5a6d4ea9d7d, type: 3}
+  validOpening: 0
 --- !u!65 &8285494613738173753
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1862,8 +1901,8 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!54 &7747134111820196342
+  m_Center: {x: 0, y: -1, z: 0}
+--- !u!54 &193683647498760157
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1929,7 +1968,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 20, y: 4, z: 20}
+  m_Size: {x: 19.5, y: 4, z: 19.5}
   m_Center: {x: 0, y: 2, z: 10}
 --- !u!54 &6664341835817045552
 Rigidbody:
@@ -1959,21 +1998,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c5e6cc16b697a24286303dbf788fb5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  possibleRooms:
-  - {fileID: 6664341835817045554}
-  - {fileID: 8834034701740372959, guid: 431088fb9d03a7f4fabf297eff959fc0, type: 3}
-  - {fileID: 3287911204644182922, guid: 67a9c3f35b24e574a932ea6ef2892473, type: 3}
-  - {fileID: 1180106843679749969, guid: a690500185b93dd43ad5eb4a9a61a1fa, type: 3}
-  - {fileID: 5711877688980548354, guid: a35a145babd86704cb6eac74fa1dc5b1, type: 3}
-  - {fileID: 2617051339730197633, guid: a3e181e34b59f23458a06d96b5cdf30d, type: 3}
-  - {fileID: 4292108723011886437, guid: 2cb69e9963d870d43a2e6c73b64ed13a, type: 3}
-  - {fileID: 5061696530226052356, guid: d49fd18400f3b6149b1c1e2a95b08151, type: 3}
-  - {fileID: 208227328733387244, guid: 0f7ff38d65a6f6946b781cddfe9acb24, type: 3}
+  possibleRooms: []
   openingLocations:
   - {fileID: 2953972406759847090}
   - {fileID: 7486860693860902188}
   - {fileID: 1822657249892023756}
   - {fileID: 2444253990562985713}
+  isValid: 1
 --- !u!1 &6664341835949905365
 GameObject:
   m_ObjectHideFlags: 0
@@ -3000,11 +3031,11 @@ GameObject:
   m_Component:
   - component: {fileID: 7486860693860902189}
   - component: {fileID: 7486860693860902188}
-  - component: {fileID: 8028199476515229491}
   - component: {fileID: 4450632063227403209}
+  - component: {fileID: 8990260571083950751}
   m_Layer: 0
   m_Name: Opening
-  m_TagString: Untagged
+  m_TagString: DungeonOpening
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3036,9 +3067,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f39f353edb489f24e8f0f792c4431c01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  possibleRooms:
+  - {fileID: 6664341835817045554}
+  - {fileID: 8834034701740372959, guid: 431088fb9d03a7f4fabf297eff959fc0, type: 3}
+  - {fileID: 3287911204644182922, guid: 67a9c3f35b24e574a932ea6ef2892473, type: 3}
+  - {fileID: 1180106843679749969, guid: a690500185b93dd43ad5eb4a9a61a1fa, type: 3}
+  - {fileID: 5711877688980548354, guid: a35a145babd86704cb6eac74fa1dc5b1, type: 3}
+  - {fileID: 2617051339730197633, guid: a3e181e34b59f23458a06d96b5cdf30d, type: 3}
+  - {fileID: 4292108723011886437, guid: 2cb69e9963d870d43a2e6c73b64ed13a, type: 3}
+  - {fileID: 5061696530226052356, guid: d49fd18400f3b6149b1c1e2a95b08151, type: 3}
+  - {fileID: 208227328733387244, guid: 0f7ff38d65a6f6946b781cddfe9acb24, type: 3}
   isConnected: 0
   connectedRoom: {fileID: 0}
---- !u!54 &8028199476515229491
+  collidedWithOpening: 0
+  openingDoorPrefab: {fileID: 4760678051571106232, guid: e6de9985ce570db4e89cc5a6d4ea9d7d, type: 3}
+  validOpening: 0
+--- !u!65 &4450632063227403209
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7486860693860902178}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: -1, z: 0}
+--- !u!54 &8990260571083950751
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3054,19 +3111,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!65 &4450632063227403209
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7486860693860902178}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7486860694667643673
 GameObject:
   m_ObjectHideFlags: 0
