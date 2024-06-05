@@ -9,6 +9,8 @@ public class DungeonGenerator : MonoBehaviour
     
     public List<DungeonRoom> dungeonRooms;
     
+    public int maxNumberOfRooms = 20;
+
     private void Start() {
         Generate();
     }
@@ -55,5 +57,9 @@ public class DungeonGenerator : MonoBehaviour
 
     public void AddDungeonRoom(DungeonRoom room) {
         dungeonRooms.Add(room);
+    }
+
+    public bool IsDungoenFull() {
+        return dungeonRooms.Count >= maxNumberOfRooms;
     }
 }
