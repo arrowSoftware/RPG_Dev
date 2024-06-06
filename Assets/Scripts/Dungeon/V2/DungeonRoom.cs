@@ -43,7 +43,6 @@ public class DungeonRoom : MonoBehaviour
     private void OnTriggerEnter(Collider other) {
         // If this collides with another trigger than its not a valid room.
         if (other.isTrigger && !other.gameObject.CompareTag("DungeonOpening")) {
-            Debug.Log("COllision " + other.gameObject.tag);
             isValid = false;
         }
     }
